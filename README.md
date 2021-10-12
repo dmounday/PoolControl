@@ -12,6 +12,6 @@ Written in C++17
 To build see the README in the PoolControllRPi directory.
 
 Sensor and Relay connection Interface
-![Schematic](./Hardware/connectSch.pgf)
+![Schematic](./Hardware/connectSch.pdf)
 ![RPi Pin 40](./Hardware/PiConnect.jpg)
 ![Bare Board](./Hardware/PiBare.jpg)
