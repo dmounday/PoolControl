@@ -17,8 +17,8 @@ set(CMAKE_RANLIB                    ${RPi_TOOLCHAIN_PATH}arm-linux-gnueabihf-ran
 set(CMAKE_SIZE                      ${RPi_TOOLCHAIN_PATH}arm-linux-gnueabihf-size${CMAKE_EXECUTABLE_SUFFIX} CACHE INTERNAL "")
 set(CMAKE_STRIP                     ${RPi_TOOLCHAIN_PATH}arm-linux-gnueabihf-strip${CMAKE_EXECUTABLE_SUFFIX} CACHE INTERNAL "")
 
-#set(CMAKE_C_FLAGS                   "-Wno-psabi --specs=nosys.specs -fdata-sections -ffunction-sections -Wl,--gc-sections" CACHE INTERNAL "")
-#set(CMAKE_CXX_FLAGS                 "${CMAKE_C_FLAGS} -fno-exceptions" CACHE INTERNAL "")
+set(CMAKE_C_FLAGS                   "-Wno-psabi" )
+set(CMAKE_CXX_FLAGS                 "-Wno-psabi" )
 
 #set(CMAKE_C_FLAGS_DEBUG             "-Os -g" CACHE INTERNAL "")
 #set(CMAKE_C_FLAGS_RELEASE           "-Os -DNDEBUG" CACHE INTERNAL "")

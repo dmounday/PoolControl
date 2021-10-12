@@ -10,3 +10,5 @@ Features:
 Generalized configuration of sensors and equpment.
 Written in C++17 
 
+To build see the README in the PoolControllRPi directory.
+

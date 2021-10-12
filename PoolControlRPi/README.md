@@ -26,3 +26,21 @@ and the following:
 
 This app and the libraries are organized as Eclipse projects.
 
+To Build:
+1. Edit the RPiCrossTools.cmake to reflect your toolchain.
+2. $ cmake -S . -B build
+   $ cd build; make -j8
+
+   Executable is build/src/PoolControlRPi
+
+   Example configuration and scheduling files are:
+      poolconfig.json
+      schedule.json
+      poolsmartz.service 
+   
+   Run as
+   $PoolControlRPi poolconfig.json schedule.json info [console]
+   
+
+   
+   
