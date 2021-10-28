@@ -26,7 +26,7 @@ class LogicLevelShifter;
  */
 class GblData {
 public:
-  GblData (boost::asio::io_context& ioc);
+  GblData ();
   void Configure (const char* configFile,
                   const char* runSchedFile,
                   const char* severity,
@@ -36,7 +36,7 @@ public:
   EquipmentPtr Equip(std::string const& id) const;
   Equipment const& AllEquipment() const;
   std::shared_ptr<RemoteAccess> GetRemoteAccess() const;
-  boost::asio::io_context& IOC() const;
+  boost::asio::io_context& IOC()const;
   pt::ptree& RunProperties() const;
   ConfigScheduling& Scheduling()const;
   void
@@ -57,8 +57,8 @@ public:
   /**
    * Start equipment and scheduling.
    */
-  void Go();
-  void AllStop();
+  void Run();
+
 private:
   std::shared_ptr<GblDataImpl> pimpl;
 

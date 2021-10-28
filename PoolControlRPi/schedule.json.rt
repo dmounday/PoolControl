@@ -29,11 +29,11 @@
         },
         "HeatPump": {
             "Sensor": {
-                "State": "off",
+                "State": "on",
                 "ID": "HeatPumpInTemp",
                 "Delay": "10",
                 "Interval": "15",
-                "Temp": "71",
+                "Temp": "73",
                 "Diff": "1.5"
             }
         }

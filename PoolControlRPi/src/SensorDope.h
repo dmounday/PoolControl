@@ -53,8 +53,7 @@ public:
    * @param Reference to Equipment vector.
    * @param boost::property_tree (child of Sensors node).
    */
-  //SensorDope (boost::asio::io_context&, Equipment&,
-  //            const pt::ptree& );
+
   SensorDope (GblData& gD, const pt::ptree &sensors);
   virtual ~SensorDope ();
   /**

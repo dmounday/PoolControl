@@ -18,7 +18,7 @@ namespace pentair_control {
 
 class GblDataImpl {
 public:
-  GblDataImpl (boost::asio::io_context& ioc);
+  GblDataImpl ();
   void Configure (GblData &gData, const char *configFile,
                   const char *runSchedFile, const char *severity,
                   bool consoleLog);
@@ -28,7 +28,7 @@ public:
   inline std::shared_ptr<RemoteAccess> GetRemoteAccess() const
       {return remoteAccess_;};
   inline pt::ptree& RunProperties(){return runProps_;};
-  inline boost::asio::io_context& IOC() const
+  inline boost::asio::io_context& IOC()
   { return ioc_;};
   float GetSensorValue(std::string const& id) const;
   inline void
@@ -56,10 +56,10 @@ public:
 
   void SetScheduleFile(const char* fileName);
   void SaveSchedules() const;
-  void Go();
-  void AllStop();
+  void Run();
 private:
-  boost::asio::io_context& ioc_;
+  boost::asio::io_context ioc_;
+  boost::asio::signal_set signals_;
   std::shared_ptr<SensorDope> sensorDope_;
   std::shared_ptr<RemoteAccess> remoteAccess_;
   std::shared_ptr<ConfigScheduling> schedConfig_;
@@ -67,6 +67,7 @@ private:
   pt::ptree runProps_;
   std::string schedFile_;   // run properties file name
   Equipment equipment_;
+  void DoWaitStop();
   void StartEquipment();
   void StopEquipment();
 };

@@ -9,9 +9,21 @@
 
 namespace pentair_control {
 
-GblDataImpl::GblDataImpl (boost::asio::io_context& ioc):
-  ioc_{ioc}
-{}
+GblDataImpl::GblDataImpl ():
+  ioc_(),
+  signals_{ioc_}
+{
+  // Register to handle the signals that indicate when the server should exit.
+    // It is safe to register for the same signal multiple times in a program,
+    // provided all registration for the specified signal is made through Asio.
+    signals_.add(SIGINT);
+    signals_.add(SIGTERM);
+    signals_.add(SIGHUP);
+  #if defined(SIGQUIT)
+    signals_.add(SIGQUIT);
+  #endif // defined(SIGQUIT)
+    DoWaitStop();
+}
 void GblDataImpl::Configure(GblData &gData, const char *configFile,
                    const char *runSchedFile, const char *severity,
                    bool consoleLog){
@@ -62,18 +74,29 @@ void GblDataImpl::SaveSchedules() const{
   pt::write_json(fn, runProps_);
 }
 void
-GblDataImpl::Go(){
+GblDataImpl::Run(){
   StartEquipment();
   PLOG(plog::debug)<< "RunSchedule";
   schedConfig_->RunSchedule();
   PLOG(plog::debug)<< "Start RemoteAccess";
   remoteAccess_->Start();
+  ioc_.run();
 }
 void
-GblDataImpl::AllStop(){
-  PLOG(plog::info);
-  StopEquipment();
-  ioc_.stop();
-
+GblDataImpl::DoWaitStop(){
+  signals_.async_wait(
+        [this](boost::system::error_code /*ec*/, int signo)
+        {
+          PLOG(plog::info)<< "SigNo: "<< signo;
+          StopEquipment();
+          // The server is stopped by cancelling all outstanding asynchronous
+          // operations. Once all operations have finished the io_service::run()
+          // call will exit.
+          //acceptor_.close();
+          //connection_manager_.stop_all();
+          ioc_.stop();
+          exit(0);
+        });
 }
+
 } /* namespace pentair_control */

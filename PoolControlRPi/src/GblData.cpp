@@ -11,8 +11,8 @@
 namespace pentair_control {
 
 
-GblData::GblData (boost::asio::io_context &ioc) :
-    pimpl { std::make_shared<GblDataImpl> (ioc) } {
+GblData::GblData () :
+    pimpl { std::make_shared<GblDataImpl>() } {
 }
 void GblData::Configure (const char* configFile,
                             const char* runSchedFile,
@@ -36,7 +36,7 @@ GblData::AllEquipment () const {
   return pimpl->AllEquipment ();
 }
 boost::asio::io_context&
-GblData::IOC () const {
+GblData::IOC ()const{
   return pimpl->IOC ();
 }
 ConfigScheduling&
@@ -75,11 +75,8 @@ void GblData::SetScheduleFile(const char* name){
 void GblData::SaveSchedules() const{
   pimpl->SaveSchedules();
 }
-void GblData::Go(){
-  pimpl->Go();
-}
-void GblData::AllStop(){
-  pimpl->AllStop();
+void GblData::Run(){
+  pimpl->Run();
 }
 
 } /* namespace pentair_control */

@@ -42,9 +42,7 @@ public:
     EquipSched(boost::asio::io_context& ioc,
                            pt::ptree& node,
                            EquipmentPtr ep);
-    //EquipSched(boost::asio::io_context& ioc,
-    //           bool manual,
-    //           EquipmentPtr ep);
+
     virtual ~EquipSched(){};
     void GetStartStop(const pt::ptree& node);
     void Reschedule(const pt::ptree& node);

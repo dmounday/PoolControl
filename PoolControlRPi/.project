@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>PoolControlRPi</name>
+	<name>PoolControllerRPi</name>
 	<comment></comment>
 	<projects>
-		<project>CppGPIO</project>
-		<project>HTTPServerLib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
