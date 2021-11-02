@@ -10,6 +10,7 @@ set(SRC_FILE_LIST ./IC40.cpp
 ./MomentarySwitch.cpp
 ./ConfigGlobal.cpp
 ./WirelessHandler.cpp
+./WirelessConsumer.cpp
 ./SerialPort.cpp
 ./SensorDope.cpp
 ./SI7021.cpp
@@ -25,43 +26,15 @@ set(SRC_FILE_LIST ./IC40.cpp
 ./HeatPumpSchedule.cpp
 ./ConfigScheduling.cpp
 ./RTSensor.cpp
-./SensorModule.cpp
-./main.cpp )
+./SensorBase.cpp
+)
 
-set(HDR_FILE_LIST ./WirelessHandler.h
-./SI7021.h
-./ConfigGlobal.h
-./ConfigScheduling.h
-./MainPumpSchedule.h
-./RelaySwitcher.h
-./HeatPumpSchedule.h
-./GblDataImpl.h
-./EquipmentCommands.h
-./LogicLevelShifter.h
-./WirelessSensors.h
-./RemoteAccess.h
-./IC40.h
-./SensorModule.h
-./EquipmentBase.h
-./MomentarySwitch.h
-./SerialPort.h
-./DS18B20.h
-./SensorDope.h
-./JsonHandler.h
-./EquipSched.h
-./RTSensor.h
-./EquipmentStatus.h
-./GblData.h )
+add_library( PoolControlLib ${SRC_FILE_LIST})
 
-set(THREADS_PREFER_PTHREAD_FLAG ON)
-find_package(Threads)
-
-add_executable( PoolControlRPi ${SRC_FILE_LIST})
-target_link_libraries(PoolControlRPi -pthread )
-target_include_directories( PoolControlRPi PUBLIC
+target_include_directories( PoolControlLib PUBLIC
                            ${CMAKE_CURRENT_SOURCE_DIR}
                            ../${HTTPSERVERLIB}
                            ../${CppGPIOINCLUDE} 
                            ../${PLOG_PATH})
-target_link_libraries(PoolControlRPi HTTPServerLib CppGPIOLib ${ARMLIBS})
+target_link_libraries(PoolControlLib HTTPServerLib CppGPIOLib ${ARMLIBS})
 

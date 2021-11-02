@@ -9,29 +9,23 @@
 #define SRC_WIRELESSHANDLER_H_
 #include <string>
 #include <map>
+#include <boost/property_tree/ptree.hpp>
 #include "plog/Log.h"
 #include "SerialPort.h"
-#include "WirelessSensors.h"
 
 namespace pentair_control {
-
-using RT = std::map<const int, WirelessSensors*>;
+namespace pt = boost::property_tree;
 //
 // Handles one or more WirelessRT that report on the same serial port.
 //
+class WirelessConsumer;
+
 class WirelessHandler: public SerialPort {
-	RT rts_;
-	void UpdateSensors(const std::string& );
+  std::vector<WirelessConsumer*> consumers;
 	void on_receive_(const std::string& data)override;
 public:
-	// port is a tty port
-	//
-	WirelessHandler(boost::asio::io_context& ioc, const std::string& port, int baud_rate);
-	inline void ConfigureRT(const int id, WirelessSensors* rt) {
-		rts_[id] = rt;
-		//PLOG(plog::debug)<< "RT ID: "<< id;
-	}
-
+  WirelessHandler(boost::asio::io_context& ioc, const pt::ptree& node);
+  void RegisterConsumer(WirelessConsumer*);
 
 };
 

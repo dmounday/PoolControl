@@ -17,12 +17,12 @@ namespace pentair_control {
 
 
 SI7021::SI7021(boost::asio::io_context& ioc, const std::string& name, const pt::ptree& prop):
-    SensorModule{ioc, name},
+    SensorBase{name},
     interval_{prop.get<int>("Sample-Interval", 0)},
     refresh_stop_{false},
     path_{prop.get<std::string> ("Path")},
     i2c(path_, SI7021_I2CADDR),
-    sample_timer_(ioc)
+    sample_timer_(ioc), ioc_{ioc}
 {
   try{
     const auto& sensors = prop.get_child("Sensors");

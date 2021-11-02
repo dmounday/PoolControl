@@ -13,7 +13,7 @@
 "WirelessHandler":
 	{
 	"_comment3": "Interface to MightyHat UPS and wireless R/T",
-	 "SerialPort": "/dev/tty/AMA0",
+	 "SerialPort": "/dev/ttyAMA0",
 	 "BaudRate": 115200,
 	 "Destination": "Wireless"
 	},
@@ -26,13 +26,13 @@
 					 {
 					"RemoteID":  790,
 					"MsgPrefix":  "WC",
-					"Correction": 0.0
+					"Correction": -0.313
 					 },
 				 "CaseTemp":
 					 {
 					"RemoteID":  790,
 					"MsgPrefix":  "CC",
-					"Correction": 0.0
+					"Correction": -0.351
 					 },
 				"CaseHum":
 					{
@@ -64,17 +64,17 @@
 				 "HeatPumpInTemp":
 				 	{
 					 "ProbeID": "28-01144d525baa",
-					 "Correction": -1.5116
+					 "Correction": 0.0
 				 	},
 				"HeatPumpOutTemp":
 					{
 					"ProbeID": "28-3c01d6078912",
-					"Correction": 0.5200
+					"Correction": -1.125
 					},
 				"AirTemp":
 					{
 					"ProbeID": "28-3c01b556939e",
-					"Correction": -0.9400
+					"Correction": -1.032
 					}
 				}
 		}

@@ -25,6 +25,7 @@ namespace pentair_control {
 class ConfigGlobal {
 
 static inline const std::string LEVELSHIFTER{"LogicLevelShifter"};
+static inline const std::string WIRELESSHANDLER{"WirelessHandler"};
 static inline const std::string SENSORS{"Sensors"};
 static inline const std::string RELAYS{"Relays"};
 static inline const std::string REQ_STATES{"RequiredStates"};

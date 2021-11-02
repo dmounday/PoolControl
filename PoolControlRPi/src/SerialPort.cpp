@@ -57,7 +57,7 @@ bool SerialPort::start(const std::string& com_port_name, int baud_rate)
 
 
 	async_read_some_();
-
+	PLOG(plog::debug)<< "start completed: " << com_port_name << " rate: "<< baud_rate;
 	return true;
 }
 
@@ -99,6 +99,7 @@ void SerialPort::async_read_some_()
 
 void SerialPort::on_receive_(const boost::system::error_code& ec, size_t bytes_transferred)
 {
+  //PLOG(plog::debug)<< "ec: " << ec << " xfered:"<< bytes_transferred;
 	if (port_.get() == NULL || !port_->is_open()) return;
 	if (ec) {
 		async_read_some_();

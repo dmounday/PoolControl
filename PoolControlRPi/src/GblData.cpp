@@ -47,9 +47,14 @@ std::shared_ptr<RemoteAccess>
 GblData::GetRemoteAccess() const {
   return pimpl->GetRemoteAccess();
 }
+
 void GblData::SetLogicShifter (std::shared_ptr<LogicLevelShifter> ls) {
   pimpl->SetLogicShifter (ls);
 }
+void
+GblData::SetWirelessHandler(std::shared_ptr<WirelessHandler> wh){
+  pimpl->SetWirelessHandler(wh);};
+
 void GblData::SetSensorDope (std::shared_ptr<SensorDope> sd) {
   pimpl->SetSensorDope (sd);
 }

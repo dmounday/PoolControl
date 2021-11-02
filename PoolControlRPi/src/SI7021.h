@@ -11,13 +11,13 @@
 #include <string>
 #include <iomanip>
 #include <boost/property_tree/ptree.hpp>
+#include <SensorBase.h>
 #include "plog/Log.h"
-#include "SensorModule.h"
 #include "cppgpio/i2c.hpp"
 
 namespace pentair_control {
 namespace pt = boost::property_tree;
-class SI7021: public SensorModule {
+class SI7021: public SensorBase {
   static const unsigned int SI7021_I2CADDR {0x40};
   static const uint8_t SI7021_READTEMP {0xF3};  // Read Temp, No Hold Master mode.
   static const uint8_t SI7021_READHUM {0xF5};   // Read RH, NO Hold Master mode.
@@ -61,6 +61,7 @@ private:
   GPIO::I2C i2c;
 
 	boost::asio::steady_timer sample_timer_;
+	boost::asio::io_context& ioc_;
   float ReadTemp();
   float ReadHumidity();
   void Reset();

@@ -36,7 +36,7 @@ GblDataImpl::Sensor(std::string const& id)const
 }
 
 float GblDataImpl::GetSensorValue(std::string const& id) const{
-  auto sm =  std::static_pointer_cast<SensorModule>(Sensor(id));
+  auto sm =  std::static_pointer_cast<SensorBase>(Sensor(id));
   return sm->GetSensorValue(id);
 }
 

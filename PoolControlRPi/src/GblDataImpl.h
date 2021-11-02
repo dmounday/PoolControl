@@ -8,6 +8,7 @@
 #ifndef SRC_GBLDATAIMPL_H_
 #define SRC_GBLDATAIMPL_H_
 #include "ConfigGlobal.h"
+#include "WirelessHandler.h"
 #include "EquipmentBase.h"
 #include "SensorDope.h"
 #include "ConfigScheduling.h"
@@ -31,9 +32,11 @@ public:
   inline boost::asio::io_context& IOC()
   { return ioc_;};
   float GetSensorValue(std::string const& id) const;
+
   inline void
   SetLogicShifter(std::shared_ptr<LogicLevelShifter> ls){ logicShifter_ = ls;};
-
+  inline void
+  SetWirelessHandler(std::shared_ptr<WirelessHandler> wh){wirelessHandler_ = wh;};
   inline void
   SetSensorDope(std::shared_ptr<SensorDope> sd){sensorDope_ = sd;};
 
@@ -64,6 +67,7 @@ private:
   std::shared_ptr<RemoteAccess> remoteAccess_;
   std::shared_ptr<ConfigScheduling> schedConfig_;
   std::shared_ptr<LogicLevelShifter> logicShifter_;  // +3.3v -> 5V shifter enable
+  std::shared_ptr<WirelessHandler> wirelessHandler_;
   pt::ptree runProps_;
   std::string schedFile_;   // run properties file name
   Equipment equipment_;

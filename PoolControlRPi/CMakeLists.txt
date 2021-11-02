@@ -28,12 +28,11 @@ set(PLOG_PATH ../plog/include)
 add_subdirectory(../CppGPIO CppGPIOLib)
 add_subdirectory(../HTTPServerLib HTTPServerLib)
 add_subdirectory(src)
+add_subdirectory(main)
+#add_subdirectory(tests)
+add_subdirectory(unit_tests)
 
-#add_executable(PoolControllerRPi src/main.cpp)
 
-#target_include_directories(PoolControllerRPi PUBLIC ${PLOG_PATH} )
-
-#target_link_libraries(PoolControllerRPi ${ARMLIBS})
 
 
 

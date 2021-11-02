@@ -12,13 +12,12 @@
 #include <string>
 #include <iomanip>
 #include <boost/property_tree/ptree.hpp>
-#include "SensorModule.h"
-
+#include <SensorBase.h>
 #include "plog/Log.h"
 namespace pentair_control {
 namespace pt = boost::property_tree;
 
-class DS18B20: public SensorModule {
+class DS18B20: public SensorBase {
   const int BAD_SAMPLE {1000000};
   const float BAD_TEMP {1000.0};
 public:

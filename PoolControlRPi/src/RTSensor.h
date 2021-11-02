@@ -17,12 +17,14 @@ class RTSensor {
   int rf_id_;     // ID of remote radio.
 	std::string sensor_id_;  // ID of sensor from configuation.
 	std::string label_;      // Web label from configuration.
+	float correction_;
 	std::chrono::system_clock::time_point last_reading_;
 	std::string sample_;
 public:
 	// This models the single instance of a sensor, such as temperature,
 	// transmitted from a Wireless Id.
-	RTSensor(const int rf_id, const std::string& sensor_id, const std::string& label);
+	RTSensor(const int rf_id, const std::string& sensor_id,
+	         const std::string& label, float correction);
 	inline const std::string& SensorID()const {return sensor_id_;};
 	inline const std::string& SensorLabel()const {return label_;};
 	inline std::chrono::system_clock::time_point LastReading()const {
@@ -32,9 +34,8 @@ public:
 		last_reading_ = time;
 	}
 	void Update(const std::string& data);
-	inline const std::string& LastSample()const {
-		return sample_;
-	}
+
+  float LastSample()const;
 };
 
 } /* namespace WirelessSerialSensors */

@@ -54,20 +54,20 @@ public:
    * @param boost::property_tree (child of Sensors node).
    */
 
-  SensorDope (GblData& gD, const pt::ptree &sensors);
+  SensorDope (GblData& gD, std::shared_ptr<WirelessHandler>, const pt::ptree &sensors);
   virtual ~SensorDope ();
   /**
-   * Return the shared_ptr to the SensorModule that monitors
+   * Return the shared_ptr to the SensorBase that monitors
    * the <id> sensor.
    * @param id
    * @return
    */
-  std::shared_ptr<SensorModule> Sensor(std::string const & id);
+  std::shared_ptr<SensorBase> Sensor(std::string const & id);
 private:
   void MapIDs(const SensorIDs& , std::shared_ptr<EquipmentBase> );
-  // A SensorModule may contain one or more sensors or probes. sensor_
+  // A SensorBase may contain one or more sensors or probes. sensor_
   // maps the probes name to the sensor_module to which it belongs.
-  std::map<std::string, std::shared_ptr<SensorModule>> sensor_;
+  std::map<std::string, std::shared_ptr<SensorBase>> sensor_;
 };
 
 } /* namespace pentair_control */

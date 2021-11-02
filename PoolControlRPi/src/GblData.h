@@ -15,7 +15,7 @@
 namespace pentair_control {
 namespace pt = boost::property_tree;
 class GblDataImpl;
-
+class WirelessHandler;
 class SensorDope;
 class ConfigScheduling;
 class RemoteAccess;
@@ -41,6 +41,8 @@ public:
   ConfigScheduling& Scheduling()const;
   void
   SetLogicShifter (std::shared_ptr<LogicLevelShifter> ls);
+  void
+  SetWirelessHandler(std::shared_ptr<WirelessHandler>);
   void
   SetSensorDope (std::shared_ptr<SensorDope> sd);
   void

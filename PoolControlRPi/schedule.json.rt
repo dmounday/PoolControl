@@ -33,7 +33,7 @@
                 "ID": "HeatPumpInTemp",
                 "Delay": "10",
                 "Interval": "15",
-                "Temp": "73",
+                "Temp": "74",
                 "Diff": "1.5"
             }
         }

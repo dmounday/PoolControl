@@ -23,7 +23,7 @@ namespace pentair_control {
 
 DS18B20::DS18B20 (boost::asio::io_context &ioc, const std::string &name,
                   const pt::ptree &prop) :
-    SensorModule { ioc, name }, refresh_stop_ { false }, sample_timer_ { ioc } {
+    SensorBase { name }, refresh_stop_ { false }, sample_timer_ { ioc } {
   PLOG(plog::debug);
   sensor_path_ = prop.get<std::string> ("Path");
   data_file_ = prop.get<std::string> ("File");
@@ -87,7 +87,6 @@ StatusList DS18B20::GetStatusList () {
     float temp = p.sample_value;
     if (p.sample_value < BAD_SAMPLE) {
       temp /= 1000.0;
-      temp = temp * (9.0 / 5.0) + 32;
       temp = temp + p.correction;
     }
     status.push_back (std::make_pair (p.id, std::to_string (temp)));
@@ -107,7 +106,6 @@ float DS18B20::GetSensorValue (std::string const &id) const {
   if (p != probes_.end ()) {
     float temp = p->sample_value;
     temp /= 1000.0;
-    temp = temp * (9.0 / 5.0) + 32;
     temp = temp + p->correction;
     return temp;
   }
