@@ -59,7 +59,7 @@ void SI7021::Sample(){
 	auto temp = ReadTemp();
 	auto p = std::find_if(std::begin(sensors_), std::end(sensors_),
 	                      [](auto p){ return p.type=="temperature";});
-	p->sample_value = (temp * (9.0 / 5.0) + 32) + p->correction; // make F.wsa
+	p->sample_value = temp + p->correction;
 	auto hum = ReadHumidity();
   p = std::find_if(std::begin(sensors_), std::end(sensors_),
                         [](auto p){ return p.type=="humidity";});

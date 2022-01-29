@@ -17,9 +17,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON) 
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(ARMLIBS /opt/armlibs/arm-i2c/libi2c.a)
 set(HTTPSERVERLIB ../HTTPServerLib)
-#set(CppGPIOLib ../CppGPIO)
 set(CppGPIOINCLUDE ../CppGPIO/include)
 set(PLOG_PATH ../plog/include)
 
@@ -29,8 +27,8 @@ add_subdirectory(../CppGPIO CppGPIOLib)
 add_subdirectory(../HTTPServerLib HTTPServerLib)
 add_subdirectory(src)
 add_subdirectory(main)
-#add_subdirectory(tests)
-add_subdirectory(unit_tests)
+
+
 
 
 

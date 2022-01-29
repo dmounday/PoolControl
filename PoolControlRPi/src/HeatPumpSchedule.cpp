@@ -24,7 +24,7 @@ HeatPumpSchedule::HeatPumpSchedule (pt::ptree& prop_node,
    sensorId_ = sensor_prop_.get<std::string>("ID");
    sensorDelay_ = sensor_prop_.get<int>("Delay", 0);
    sensorInterval_ = sensor_prop_.get<int>("Interval", DEFAULT_INTERVAL);
-   temp_ = sensor_prop_.get<int>("Temp", 0);
+   temp_ = sensor_prop_.get<float>("Temp", 0);
    diff_ = sensor_prop_.get<float>("Diff", 0);
    state_ = sensor_prop_.get<std::string>("State", "off") == "off"?
        State::OFF: State::ON;
@@ -32,7 +32,7 @@ HeatPumpSchedule::HeatPumpSchedule (pt::ptree& prop_node,
        " Temp: "<< temp_ << " Diff: "<< diff_;
 }
 void HeatPumpSchedule::SetSensor(const pt::ptree& props){
-  temp_ = props.get<int>("Temp", temp_);
+  temp_ = props.get<float>("Temp", temp_);
   std::string dfltState = state_==State::ON? "on": "off";
   auto const& statestr = props.get<std::string>("State", dfltState);
   state_ = statestr == "off"? State::OFF: State::ON;

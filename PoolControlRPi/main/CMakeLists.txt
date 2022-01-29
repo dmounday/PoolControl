@@ -14,5 +14,6 @@ target_include_directories( PoolControlRPi PUBLIC
                            ../${HTTPSERVERLIB}
                            ../${CppGPIOINCLUDE} 
                            ../${PLOG_PATH})
-target_link_libraries(PoolControlRPi PRIVATE PoolControlLib HTTPServerLib CppGPIOLib ${ARMLIBS} -pthread)
+
+target_link_libraries(PoolControlRPi PRIVATE PoolControlLib HTTPServerLib CppGPIOLib -li2c -pthread)
 

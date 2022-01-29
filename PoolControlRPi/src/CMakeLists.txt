@@ -36,5 +36,5 @@ target_include_directories( PoolControlLib PUBLIC
                            ../${HTTPSERVERLIB}
                            ../${CppGPIOINCLUDE} 
                            ../${PLOG_PATH})
-target_link_libraries(PoolControlLib HTTPServerLib CppGPIOLib ${ARMLIBS})
+target_link_libraries(PoolControlLib HTTPServerLib CppGPIOLib)
 

@@ -31,7 +31,7 @@ private:
   std::string sensorId_;
   int sensorDelay_;
   int sensorInterval_;
-  int temp_;
+  float temp_;
   float diff_;
   State state_;
 

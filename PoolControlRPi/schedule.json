@@ -9,7 +9,7 @@
     	  },
     	 "FreezeGuard":{
     		 "State": "on",
-    		 "LowTemp": 38,
+    		 "LowTemp": 5,
     		 "SensorID": "AirTemp"
     	 }
       },
@@ -37,7 +37,7 @@
       		 "ID": "HeatPumpInTemp",
       		 "Delay": "10",
       		 "Interval": "15",
-      	    "Temp": "71",
+      	    "Temp": "21",
       	    "Diff": "1.5"
       	  }
     }
