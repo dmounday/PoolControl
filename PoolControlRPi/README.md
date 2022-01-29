@@ -31,13 +31,13 @@ To Build:
 2. $ cmake -S . -B build
    $ cd build; make -j8
 
-   Executable is build/src/PoolControlRPi
+   Executable is build/main/PoolControlRPi
 
    Example configuration and scheduling files are:
       poolconfig.json
       schedule.json
       poolsmartz.service 
-   
+3.  
    Run as
    $PoolControlRPi poolconfig.json schedule.json info [console]
    
