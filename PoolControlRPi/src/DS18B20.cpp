@@ -28,6 +28,7 @@ DS18B20::DS18B20 (boost::asio::io_context &ioc, const std::string &name,
   sensor_path_ = prop.get<std::string> ("Path");
   data_file_ = prop.get<std::string> ("File");
   refresh_seconds_ = prop.get<int> ("Sample-Interval");
+  label = prop.get<std::string>("label");
   const auto &sensors = prop.get_child ("Sensors");
   for (const auto &s : sensors) {
     const auto &si = s.second;
@@ -83,6 +84,7 @@ void DS18B20::ReadSensors () {
 
 StatusList DS18B20::GetStatusList () {
   StatusList status;
+  status.push_back(std::make_pair("label", label));
   for (auto &p : probes_) {
     float temp = p.sample_value;
     if (p.sample_value < BAD_SAMPLE) {
@@ -91,9 +93,9 @@ StatusList DS18B20::GetStatusList () {
     }
     status.push_back (std::make_pair (p.id, std::to_string (temp)));
   }
-  std::ostringstream time_str;
+  
   std::time_t t_c = std::chrono::system_clock::to_time_t (last_reading_);
-  time_str << std::put_time (std::localtime (&t_c), "%F %T");
+  std::ostringstream time_str(std::to_string(t_c)); 
   status.push_back (std::make_pair ("Time", time_str.str ()));
   return status;
 }

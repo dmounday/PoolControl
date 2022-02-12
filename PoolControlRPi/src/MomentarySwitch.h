@@ -23,8 +23,7 @@ constexpr std::chrono::nanoseconds MIN_HOLD_INTERVAL {std::chrono::nanoseconds(5
 
 class MomentarySwitch: public RelaySwitcher {
 public:
-	//MomentarySwitch(const std::string& id, unsigned switcher_pin, unsigned button_pin);
-	MomentarySwitch(const std::string& id, unsigned switcher_pin, unsigned button_pin,
+	MomentarySwitch(const std::string& id, const std::string& label, unsigned switcher_pin, unsigned button_pin,
 			unsigned led_pin = 0);
 	virtual ~MomentarySwitch();
 

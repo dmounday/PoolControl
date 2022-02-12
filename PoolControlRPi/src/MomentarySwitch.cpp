@@ -8,9 +8,9 @@
 #include "MomentarySwitch.h"
 namespace pentair_control {
 
-MomentarySwitch::MomentarySwitch(const std::string& id, unsigned switcher_pin,
+MomentarySwitch::MomentarySwitch(const std::string& id, const std::string& label, unsigned switcher_pin,
 		unsigned button_pin, unsigned led_pin ):
-	RelaySwitcher(id, switcher_pin, led_pin),
+	RelaySwitcher(id, label, switcher_pin, led_pin),
 	momentary_(button_pin, GPIO::GPIO_PULL::DOWN, MIN_TRIGGER_INTERVAL, MIN_HOLD_INTERVAL),
 	button_pin_ {button_pin},
 	button_pushed_{false}

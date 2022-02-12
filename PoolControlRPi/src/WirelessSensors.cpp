@@ -20,6 +20,7 @@ WirelessSensors::WirelessSensors(std::shared_ptr<WirelessHandler> wh,
   SensorBase(name), signal_strength_{0}
 {
   const auto& sensors = node.get_child("Sensors");
+  label = node.get<std::string>("label");
   for (const auto& s: sensors){
     std::string label = s.first;
     const auto& si = s.second;
@@ -69,12 +70,13 @@ bool WirelessSensors::Update (const std::string &data) {
 
 pentair_control::StatusList
 WirelessSensors::GetStatusList(){
+  status.push_back(std::make_pair("label", label));
 	for ( auto& s: sensors_)
 		status.push_back(std::make_pair(s.SensorLabel(),
 		                                std::to_string(s.LastSample())));
 	std::ostringstream time_str;
 	std::time_t t_c = std::chrono::system_clock::to_time_t(last_reading_);
-	time_str << std::put_time(std::localtime(&t_c), "%F %T");
+	time_str << std::to_string(t_c); //std::put_time(std::localtime(&t_c), "%F %T");
 	status.push_back(std::make_pair("Time", time_str.str() ));
 	status.push_back(std::make_pair("Signal", std::to_string( signal_strength_)));
 	return status;

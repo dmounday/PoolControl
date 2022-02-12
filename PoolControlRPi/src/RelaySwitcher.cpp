@@ -18,11 +18,13 @@ namespace pentair_control {
 ///
 /// RelaySwitcher represents a GPIO that drives a relay.
 
-RelaySwitcher::RelaySwitcher(const std::string& name, unsigned pin, unsigned led_pin):
+RelaySwitcher::RelaySwitcher(const std::string& name, const std::string& label, unsigned pin,
+             unsigned led_pin ):
 	EquipmentBase(name),
 	pin_ {pin}, pilot_pin_{led_pin}, state_{RelaySwitcher::RelayState::OFF},
 	switch_(pin),
-	pilot_(led_pin)
+	pilot_(led_pin),
+  label_{label}
   {
     switch_.off();
     PLOG(plog::debug)<< "Relay: "<< name;
@@ -161,15 +163,16 @@ bool RelaySwitcher::CheckConditions(SwitchRequest switch_req)
 StatusList
 RelaySwitcher::GetStatusList() {
 	StatusList states;
+  states.push_back(std::make_pair("label", Label()));
 	states.push_back(std::make_pair("status", StateStr()));
-	std::ostringstream time_str;
+	
 	std::time_t t_c = std::chrono::system_clock::to_time_t(on_time_);
-	time_str << std::put_time(std::localtime(&t_c), "%F %T");
+	std::ostringstream time_str(std::to_string(t_c));
 	states.push_back(std::make_pair("time_on", time_str.str() ));
 
 	t_c = std::chrono::system_clock::to_time_t(off_time_);
-	std::ostringstream time_off_str;
-	time_off_str << std::put_time(std::localtime(&t_c), "%F %T");
+	
+	std::ostringstream time_off_str( std::to_string(t_c)); 
 	states.push_back(std::make_pair("time_off", time_off_str.str() ));
 
 	return states;

@@ -17,7 +17,7 @@ Requires C++17.
 This application depends on the library code within this repository:
 * HTTPServerLib
 * plog (Header only logging)
-* CppGPIO
+* CppGPIO (adapted to use boost/asio for timers)
 
 and the following:
 
@@ -40,6 +40,13 @@ To Build:
 3.  
    Run as
    $PoolControlRPi poolconfig.json schedule.json info [console]
+
+   or install as a service.
+
+Notes:
+The CppGPIO library is a static library linked with the application. This may
+conflict with usage of GPIO by other applications. This should be implemented
+as a shared library.
    
 
    

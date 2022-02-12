@@ -25,6 +25,7 @@ SI7021::SI7021(boost::asio::io_context& ioc, const std::string& name, const pt::
     sample_timer_(ioc), ioc_{ioc}
 {
   try{
+    label = prop.get<std::string>("label");
     const auto& sensors = prop.get_child("Sensors");
     for (const auto& s: sensors){
       const auto& si = s.second;
@@ -106,12 +107,13 @@ float SI7021::ReadHumidity(){
 pentair_control::StatusList
 SI7021::GetStatusList(){
 	pentair_control::StatusList status;
+  status.push_back(std::make_pair("label", label));
 	for ( const auto& s: sensors_){
 	  status.push_back(std::make_pair(s.id, std::to_string(s.sample_value)));
 	}
   std::ostringstream time_str;
   std::time_t t_c = std::chrono::system_clock::to_time_t(last_reading_);
-  time_str << std::put_time(std::localtime(&t_c), "%F %T");
+  time_str << std::to_string(t_c); //std::put_time(std::localtime(&t_c), "%F %T");
   status.push_back(std::make_pair("Time", time_str.str() ));
 	return status;
 }

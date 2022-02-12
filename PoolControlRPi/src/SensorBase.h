@@ -25,6 +25,7 @@ public:
 protected:
   bool refresh_stop_;
   std::chrono::system_clock::time_point last_reading_;
+  std::string label;
 };
 
 } /* namespace pentair_control */

@@ -24,12 +24,12 @@
       "Booster":
         {
         "Start": "manual",
-	"Stop": "manual"
+	      "Stop": "manual"
         },
       "Lighting":
         {
         "Start": "manual",
-	"Stop": "manual"
+	      "Stop": "manual"
         },
       "HeatPump":{
       	  "Sensor": {

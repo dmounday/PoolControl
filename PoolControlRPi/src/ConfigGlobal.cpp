@@ -94,6 +94,7 @@ void ConfigGlobal::StateConfig (const pt::ptree &required) {
  "Relays": {
  "MainPump":
  {
+ "label", "Pump",
  "RelayGPIO": "17",
  "SwitchGPIO": "24",   <- optional push button
  "LEDGPIO": 6
@@ -104,16 +105,18 @@ void ConfigGlobal::RelayConfig (const pt::ptree &relays) {
   try {
     for (const auto &relay : relays) {
       const auto &r = relay.second;
+      std::string label = r.get<std::string>("label");
       unsigned relayGPIO = r.get<unsigned> ("RelayGPIO", 0);
       unsigned pilotGPIO = r.get<unsigned> ("LEDGPIO", 0);
       unsigned pushButton = r.get<unsigned> ("SwitchGPIO", 0);
       if (pushButton == 0) {
-        auto switcher = std::make_shared<RelaySwitcher> (relay.first, relayGPIO,
+        auto switcher = std::make_shared<RelaySwitcher> (relay.first, label, relayGPIO,
                                                          pilotGPIO);
         gD_.AddEquipment (relay.first,
                           std::dynamic_pointer_cast<EquipmentBase> (switcher));
       } else {
         auto switcher = std::make_shared<MomentarySwitch> (relay.first,
+                                                           label,
                                                            relayGPIO,
                                                            pushButton,
                                                            pilotGPIO);

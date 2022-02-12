@@ -39,6 +39,7 @@ public:
       {
       "_comment4": "Sensor data passed from MightyHat serial port",
        "Sensors":  {
+         "label": "WaterTemps",
          "PoolTemp":
            {
           "RemoteID":  790,

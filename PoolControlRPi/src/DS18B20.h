@@ -27,6 +27,7 @@ public:
       "Sample-Interval": 60,
       "path": "/sys/bus/w1/devices",
       "file": "temperature",
+      "label": "PoolTemps",
       "Sensors":
         {
          "HeatPumpInTemp":

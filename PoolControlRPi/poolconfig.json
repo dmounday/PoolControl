@@ -21,6 +21,7 @@
 		{"Wireless": 
 			{
 			"_comment4": "Sensor data passed from MightyHat serial port",
+			"label": "WaterTemps",
 			 "Sensors":  {
 				 "PoolTemp":
 					 {
@@ -42,6 +43,7 @@
 		}
 	},
 		"SI7021": {
+			"label": "Controls",
 			"Sample-Interval": 60,
 			"Path": "/dev/i2c-1",
 			"_comment5": "Sensor in controller cabinet to monitor temp and hum.",
@@ -59,6 +61,7 @@
 			"Sample-Interval": 60,
 			"Path": "/sys/bus/w1/devices",
 			"File": "temperature",
+			"label": "PoolTemps",
 			"Sensors":
 				{
 				 "HeatPumpInTemp":
@@ -89,30 +92,35 @@
 "Relays": 
       {
 	  "MainPump":
-    	  {
+    	{
+		"label": "Pump",
         "RelayGPIO": "17",
         "SwitchGPIO": "24",
         "LEDGPIO": 6
         },
        "Booster":
-         {
+        {
+		"label": "Cleaner",
         "RelayGPIO": "27",
         "SwitchGPIO": "16",
         "LEDGPIO": "21"
          },
         "IC40":
-          {
+        {
+		"label": "Sanitizer",
         "RelayGPIO": "22",
         "SwitchGPIO": "5",
         "LEDGPIO":"19"
           },
       "Lighting":
         {
+		"label": "Light",
         "RelayGPIO": "26",
         "SwitchGPIO": "12",
         "LEDGPIO":"13"
         },
       "HeatPump": {
+		"label": "Heater",
         "RelayGPIO": "18"
       }
 },

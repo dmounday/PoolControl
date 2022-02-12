@@ -60,7 +60,8 @@ public:
 	/// Relay switch and GPIO control pin. led_pin specifies the control pin
 	/// for the LED pilot light.
 	///
-	RelaySwitcher(const std::string& name, unsigned pin, unsigned led_pin = 0);
+	RelaySwitcher(const std::string& name, const std::string& label, unsigned pin,
+				 unsigned led_pin = 0);
 	virtual ~RelaySwitcher();
 	void SwitchOn()override final;
 	void SwitchOff()override final;
@@ -71,6 +72,7 @@ public:
 	inline std::chrono::system_clock::time_point OnTime()const {return on_time_;}
 	inline std::chrono::system_clock::time_point OffTime()const {return off_time_;}
 	virtual StatusList GetStatusList();
+	inline const std::string& Label()const {return label_;};
 private:
 	bool CheckConditions(SwitchRequest );
 	unsigned pin_;			// GPIO pin for equipment control
@@ -82,7 +84,7 @@ private:
 
 	std::chrono::system_clock::time_point on_time_;
 	std::chrono::system_clock::time_point off_time_;
-
+	std::string label_;
 };
 
 } // namespace
