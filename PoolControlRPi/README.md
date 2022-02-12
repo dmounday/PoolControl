@@ -24,7 +24,6 @@ and the following:
 * Boost version 1.71 or later.
 * arm-i2c library
 
-This app and the libraries are organized as Eclipse projects.
 
 To Build:
 1. Edit the RPiCrossTools.cmake to reflect your toolchain.
