@@ -122,6 +122,6 @@ void SerialPort::on_receive_(const boost::system::error_code& ec, size_t bytes_t
 
 void SerialPort::on_receive_(const std::string &data)
 {
-	std::cout << "SerialPort::on_receive_() : " << data << std::endl;
+	std::cout << "SerialPort::on_receive_() : " << data << '\n';
 }
 };

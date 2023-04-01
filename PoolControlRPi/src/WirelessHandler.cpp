@@ -7,7 +7,7 @@
 
 #include "WirelessHandler.h"
 #include "WirelessSensors.h"
-//#define DEBUG
+#define DEBUG
 #ifdef DEBUG
 #define DBG_LOG(x) x
 #else
@@ -22,8 +22,8 @@ namespace pentair_control {
    "BaudRate": 115200,
    "Destination": "Wireless"
   },
- * @param io
- * @param node
+ * @param io io_context
+ * @param node: reference to json configuration node.
  */
 WirelessHandler::WirelessHandler(boost::asio::io_context& io, const pt::ptree& node):
 	SerialPort(io)
@@ -43,7 +43,6 @@ WirelessHandler::on_receive_(const std::string& data){
     if ( c->Consume(data))
       return;
   }
-	//return UpdateSensors(data);
 }
 
 } /* namespace WirelessSerialSensors */

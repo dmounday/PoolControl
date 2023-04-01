@@ -28,7 +28,7 @@ int main (int argc, char *argv[]) {
     gblData.Run();
 
   } catch (std::exception &e) {
-    std::cerr << "Terminate with exception: " << e.what () << std::endl;
+    std::cerr << "Terminate with exception: " << e.what () << '\n';
   }
   return 0;
 }

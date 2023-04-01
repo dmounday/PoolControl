@@ -68,7 +68,7 @@ struct PlogConfig{
       else
         plog::init(severity, &fileAppender);
     } catch (pt::ptree_error& e){
-      std::cerr << "Logging property error: "<< e.what()<< std::endl;
+      std::cerr << "Logging property error: "<< e.what()<< '\n';
       exit(EXIT_FAILURE);
     }
   }

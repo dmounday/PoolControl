@@ -39,7 +39,15 @@
 					{
 					"RemoteID":  790,
 					"MsgPrefix":  "Hum"
-					}
+					},
+        "FilterPressure": {
+            "RemoteID": 791,
+            "MsgPrefix": "Psi"
+          },
+        "FilterBattLevel": {
+            "RemoteID": 791,
+            "MsgPrefix": "Batt"
+          }
 		}
 	},
 		"SI7021": {
@@ -103,7 +111,7 @@
 		"label": "Cleaner",
         "RelayGPIO": "27",
         "SwitchGPIO": "16",
-        "LEDGPIO": "21"
+        "LEDGPIO": "13"
          },
         "IC40":
         {
@@ -117,7 +125,7 @@
 		"label": "Light",
         "RelayGPIO": "26",
         "SwitchGPIO": "12",
-        "LEDGPIO":"13"
+        "LEDGPIO":"21"
         },
       "HeatPump": {
 		"label": "Heater",

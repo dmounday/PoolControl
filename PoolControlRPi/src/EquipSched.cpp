@@ -90,8 +90,7 @@ void EquipSched::CalcStartStopTimes () {
     DBG_LOG(PLOG(plog::debug) << "Running from " << start_date_time << " to " << stop_date_time);
   } catch (std::exception &e) {
     PLOG(plog::error) << "time calc error: " << ep_->Name ();
-
-    std::cout << "Exception: " << e.what () << std::endl;
+    PLOG(plog::error) << "Exception: " << e.what ();
     throw e;
   }
 }

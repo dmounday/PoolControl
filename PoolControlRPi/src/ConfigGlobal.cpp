@@ -40,7 +40,7 @@ ConfigGlobal::ConfigGlobal (GblData &gData, const char *configFile,
       return;
     }
   }
-  PLOG(plog::error) << "Corrupt or missing " << runSchedFile << std::endl;
+  PLOG(plog::error) << "Corrupt or missing " << runSchedFile << '\n';
   exit (99);
 
 }
@@ -81,7 +81,7 @@ void ConfigGlobal::StateConfig (const pt::ptree &required) {
       rs->RequiredStates (gD_.AllEquipment (), r.second);
     }
   } catch (pt::ptree_error &e) {
-    std::cerr << "RequiredState config error: " << e.what () << std::endl;
+    std::cerr << "RequiredState config error: " << e.what () << '\n';
     throw;
   } catch (std::range_error &e) {
     PLOG(plog::error) << "No equipment found:" << e.what ();
@@ -125,7 +125,7 @@ void ConfigGlobal::RelayConfig (const pt::ptree &relays) {
       }
     }
   } catch (pt::ptree_error &e) {
-    std::cerr << "Relay config error: " << e.what () << std::endl;
+    std::cerr << "Relay config error: " << e.what () << '\n';
     throw;
   } catch (std::range_error &e) {
     PLOG(plog::error) << "Unknow equipment switcher:" << e.what ();
@@ -140,7 +140,7 @@ bool ConfigGlobal::RunConfig (const std::string &schedFile) {
     std::cerr << "Parsing error: " << schedFile << "': " << e.what ();
     return false;
   } catch (pt::ptree_error &e) {
-    std::cerr << "Schedule/Run File error: " << e.what () << std::endl;
+    std::cerr << "Schedule/Run File error: " << e.what () << '\n';
     return false;
   }
   pt::read_json (schedFile.c_str (), gD_.RunProperties ());

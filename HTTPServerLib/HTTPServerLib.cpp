@@ -160,6 +160,7 @@ template<class Body, class Allocator, class Send>
 //------------------------------------------------------------------------------
 
 // Report a failure
+// Probably need to handle condition::timeout to avoid unnecessary logs.
 void fail (beast::error_code ec, char const *what) {
   std::cerr << what << ": " << ec.message () << "\n";
 }

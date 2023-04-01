@@ -29,7 +29,7 @@ SensorDope::SensorDope (GblData& gD, std::shared_ptr<WirelessHandler> wh,
     MapIDs(ds18b20p->GetSensorIDs(), gD.Equip(DS18B20S));
 
   } catch (pt::ptree_error &e) {
-    std::cerr << "Sensor config error: " << e.what () << std::endl;
+    std::cerr << "Sensor config error: " << e.what () << '\n';
     throw;
   } catch (std::range_error &e) {
     PLOG(plog::error) << "Unknow exception:" << e.what ();
