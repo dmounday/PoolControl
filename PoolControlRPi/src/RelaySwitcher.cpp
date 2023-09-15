@@ -174,7 +174,8 @@ RelaySwitcher::GetStatusList() {
 	
 	std::ostringstream time_off_str( std::to_string(t_c)); 
 	states.push_back(std::make_pair("time_off", time_off_str.str() ));
-
+  if ( !auxStatus_.first.empty())
+    states.push_back(auxStatus_);
 	return states;
 }
 } // namespace

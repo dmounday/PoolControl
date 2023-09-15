@@ -141,6 +141,7 @@ template<class Body, class Allocator, class Send>
         || req.target ().find ("..") != beast::string_view::npos)
       return send (bad_request ("Illegal request-target"));
     beast::string_view req_body = req.body ();
+    PLOG(plog::debug)<< "Request: " << req.method() << " " << req.target() << req_body;
     std::string response_body = handler (req.method (), req.target (),
                                          req_body);
     PLOG(plog::debug) << "Response: " << response_body;

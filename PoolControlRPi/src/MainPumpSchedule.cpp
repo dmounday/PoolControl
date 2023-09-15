@@ -20,6 +20,7 @@ MainPumpSchedule::MainPumpSchedule (pt::ptree &prop_node, GblData &gData) :
   PLOG(plog::debug) << "Speed: " << speed_;
 }
 void MainPumpSchedule::ReSample (const boost::system::error_code &ec) {
+  PLOG(plog::debug) << "guardTemp " << guardState_;
   if (ec == boost::asio::error::operation_aborted)
     return;
   if (!RunNow ()) {
@@ -48,6 +49,7 @@ void MainPumpSchedule::Run () {
     sTimer_.async_wait (
         std::bind (&MainPumpSchedule::ReSample, this, std::placeholders::_1));
   }
+  EquipSched::Run();
 }
 
 } /* namespace pentair_control */

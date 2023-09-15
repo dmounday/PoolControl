@@ -16,15 +16,31 @@
 
 namespace pentair_control {
 //
-// Class handles commands from the web interface to change the state
-// of equipment.
+// 
+/**
+ * @brief Class handles commands from the web interface to change the state of equipment.
+ * 
+ */
 class EquipmentCommands {
 
 	std::string equip_name;
 	std::string command;
 
 public:
+/**
+ * @brief Construct a new Equipment Commands object
+ * 
+ * @param path Path in request URI.
+ * @param json containing equipment name and command. {"Set":{"MainPump": "off"}}
+ */
 	EquipmentCommands(boost::string_view path, boost::string_view json);
+  /**
+   * @brief Run command from JSON string.
+   * 
+   * @param equipment 
+   * @return true command executed.
+   * @return false error - bad equipment name, bad command.
+   */
 	bool RunCommand(Equipment equipment);
 };
 

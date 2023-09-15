@@ -18,23 +18,26 @@ std::string JsonHandler::PostHandler(beast::string_view path, beast::string_view
   PLOG(plog::debug) << "path: " << path;
   PLOG(plog::debug) << "Json request: " << json;
   try {
-    if ( path == CMD_SET){
-    EquipmentCommands eq_cmd(path, json );
-    if ( eq_cmd.RunCommand(gD_.AllEquipment()))
-      return std::string("Success");
-    return std::string("Failure");
-    } else if ( path == CMD_SETSCHED){
+    if (path == CMD_SET) {
+      EquipmentCommands eq_cmd(path, json);
+      if (eq_cmd.RunCommand(gD_.AllEquipment()))
+        return std::string("Success");
+      return std::string("Failure");
+    } else if (path == CMD_SETSCHED) {
       auto& schedules = gD_.Scheduling();
       return schedules.SetSchedules(json);
-    } else if ( path == CMD_SETSENSORS){
+    } else if (path == CMD_RUNSCHEDULE ) {
+      auto& schedules = gD_.Scheduling();
+      return schedules.SetRunSchedule(json);
+    } else if (path == CMD_SETSENSORS) {
       auto& schedules = gD_.Scheduling();
       return schedules.SetSensors(json);
     }
-  } catch (std::exception &e){
-    PLOG(plog::error)<< "Exception handling POST: "<< e.what();
+  } catch (std::exception& e) {
+    PLOG(plog::error) << "Exception handling POST: " << e.what();
     return std::string("JSON format error!");
   }
-  return std::string("Failure");
+  return FAILURE;
 }
 
 std::string JsonHandler::GetHandler(beast::string_view path) {

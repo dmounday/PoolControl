@@ -1,5 +1,6 @@
 {
   "Schedule": {
+    "RunSchedule": true,
     "MainPump":
       {
       "Start": "08:00",
@@ -38,7 +39,7 @@
       		 "Delay": "10",
       		 "Interval": "15",
       	    "Temp": "21",
-      	    "Diff": "1.5"
+      	    "Diff": "0.8"
       	  }
     }
   }

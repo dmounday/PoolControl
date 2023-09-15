@@ -44,15 +44,31 @@ public:
                            EquipmentPtr ep);
 
     virtual ~EquipSched(){};
-    void GetStartStop(const pt::ptree& node);
+
+    /// @brief Update schdule object with new times.
+    /// @param node parsed json schedule tree node.
     void Reschedule(const pt::ptree& node);
+
     virtual void SetSensor(const pt::ptree& node);
+
+    /// @brief Set objects timers to start/stop equipment at scheduled time.
     virtual void Run();
 
+    /// @brief Calculate the start and stop times from the equipment schedule
+    /// and update the objects start and stop times.
     void CalcStartStopTimes();
+
+    /// @brief Return true if schedule is manual.
+    /// @return true if manual.
     inline bool Maunal()const {return manual_;};
+
+    /// @brief Calculate the start and stop times and return true if current
+    /// time is between start and stop time.
+    /// @return true if time to run.
     bool RunNow();
     inline RelayPtr Equip()const {return std::static_pointer_cast<RelaySwitcher>(ep_);};
+    static bool isRunSchedule() { return runSchedule; };
+    static void setRunSchedule(bool run){ runSchedule = run;};
 private:
     boost::asio::io_context& ioc_;
     EquipmentPtr ep_;
@@ -66,14 +82,15 @@ private:
     boost::posix_time::ptime start_date_time;
     boost::posix_time::ptime stop_date_time;
 
-    //boost::asio::system_timer t_start;
-    //boost::asio::system_timer t_stop;
     int GetSeconds(std::string hr_min);
     std::chrono::system_clock::duration duration_since_midnight();
+
+    void GetStartStop(const pt::ptree& node);
     void StopEquipment(const boost::system::error_code &ec);
     void StartEquipment(const boost::system::error_code &ec);
     long unsigned StopAfter();
     long unsigned StartAfter();
+    static bool runSchedule;
 };
 
 } /* namespace pentair_control */

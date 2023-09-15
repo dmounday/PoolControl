@@ -15,6 +15,7 @@ namespace pentair_control {
 ConfigScheduling::ConfigScheduling (pt::ptree& sched_tree,
                                     GblData& gData ): gD_{gData} {
   try {
+    EquipSched::setRunSchedule (sched_tree.get("RunSchedule", true));
     EquipmentPtr mp_eq = gData.Equip(MAIN_PUMP);
     auto& mp = sched_tree.get_child(MAIN_PUMP);
     sched_[MAIN_PUMP] =
@@ -44,12 +45,13 @@ ConfigScheduling::ConfigScheduling (pt::ptree& sched_tree,
 }
 
 void ConfigScheduling::RunSchedule() {
-  PLOG(plog::debug);
-  for (auto &eq : sched_) {
-    eq.second->Run();
-
-  }
+  PLOG(plog::debug) << EquipSched::isRunSchedule();
+  if (EquipSched::isRunSchedule())
+    for (auto& eq : sched_) {
+      eq.second->Run();
+    }
 }
+
 std::string
 ConfigScheduling::GetSchedules(){
   std::ostringstream os;
@@ -57,28 +59,55 @@ ConfigScheduling::GetSchedules(){
   return os.str();
 }
 
-std::string ConfigScheduling::SetSchedules (boost::string_view json) {
+std::string ConfigScheduling::SetSchedules(boost::string_view json) {
   // parse json into property tree
   pt::ptree tree;
   boost::iostreams::stream<boost::iostreams::basic_array_source<char>>
-        stream(json.begin(), json.end());
-  //const std::string str_it (json); // ugly probably and alloc and copy.
+      stream(json.begin(), json.end());
   try {
-    pt::read_json (stream, tree);
-    for( const auto& eq: tree){
+    pt::read_json(stream, tree);
+    for (const auto& eq : tree) {
       auto const& name = eq.first;
-      sched_[name]->Reschedule(eq.second);
+      try {
+        sched_.at(name)->Reschedule(eq.second);
+      } catch (std::out_of_range& e) {
+        PLOG(plog::error) << "Schedule JSON bad format [" << name << "]";
+      }
     }
     gD_.SaveSchedules();
-    return std::string ("Success");
-  } catch (pt::ptree_bad_path &e) {
-    PLOG(plog::error) << "Set Schedule msg parsing error: " << e.what ()
-        << json;
-  } catch (std::range_error &e) {
+    return SUCCESS;
+  } catch (pt::ptree_bad_path& e) {
+    PLOG(plog::error) << "Set Schedule msg parsing error: " << e.what()
+                      << json;
+  } catch (std::range_error& e) {
     PLOG(plog::error) << "Equipment name error in SetSched.";
   }
-  return std::string ("Failure");
+  return FAILURE;
 }
+
+std::string ConfigScheduling::SetRunSchedule(boost::string_view json) {
+  pt::ptree tree;
+  boost::iostreams::stream<boost::iostreams::basic_array_source<char>>
+        stream(json.begin(), json.end());
+  try {
+    pt::read_json(stream, tree);
+    bool run = tree.get<bool>(RUNSCHEDULE, false);
+    PLOG(plog::debug) << RUNSCHEDULE << ": " << run << " isRun: " << EquipSched::isRunSchedule();
+    EquipSched::setRunSchedule(run);
+    gD_.RunProperties().put(RUNSCHEDULE, run);
+    // if runSchedule then run current schedules. Otherwise manual on/off.
+    RunSchedule();
+    gD_.SaveSchedules();
+    return SUCCESS;
+  } catch (pt::ptree_bad_path& e) {
+    PLOG(plog::error) << "Set Schedule msg parsing error: " << e.what()
+                      << json;
+  } catch (std::range_error& e) {
+    PLOG(plog::error) << "Equipment name error in SetSched.";
+  }
+  return FAILURE;     
+}
+
 std::string
 ConfigScheduling::SetSensors(boost::string_view json){
   pt::ptree sensor_prop;
@@ -86,19 +115,23 @@ ConfigScheduling::SetSensors(boost::string_view json){
         stream(json.begin(), json.end());
   try {
     pt::read_json (stream, sensor_prop);
+    try {
     for( const auto& eq: sensor_prop){
       auto const& name = eq.first;
-      sched_[name]->SetSensor(eq.second);
+      sched_.at(name)->SetSensor(eq.second);
+    }
+    } catch (std::out_of_range& e){
+      PLOG(plog::error) << "Sensor name out of range.";
     }
     gD_.SaveSchedules();
-    return std::string ("Success");
+    return SUCCESS;
   } catch (pt::ptree_bad_path &e) {
     PLOG(plog::error) << "Set Set sensors msg parsing error: " << e.what ()
         << json;
   } catch (std::range_error &e) {
     PLOG(plog::error) << "Equipment name error in setSensors.";
   }
-  return std::string("Failure");
+  return FAILURE;
 }
 
 } /* namespace SwitchTiming */

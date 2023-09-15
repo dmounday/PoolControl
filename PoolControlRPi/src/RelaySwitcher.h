@@ -24,7 +24,10 @@ inline const std::string Error{"Error"};
 
 class RelaySwitcher;
 using RelayPtr = std::shared_ptr<RelaySwitcher>;
-
+/**
+ * @brief RelaySwitcher class derived from EquipmentBase
+ * 
+ */
 class RelaySwitcher: public EquipmentBase {
 
 public:
@@ -57,22 +60,79 @@ public:
 		ForceState					forceState;		// force relay to required state.
 	};
 
-	/// Relay switch and GPIO control pin. led_pin specifies the control pin
-	/// for the LED pilot light.
-	///
+	//Relay switch and GPIO control pin. led_pin specifies the control pin
+	//for the LED pilot light.
+	//
+
+/**
+ * @brief Construct a new Relay Switcher object for named equipment with GPIO pin
+ * number and logging label.
+ * 
+ * @param name Name of equipment i.e. "MainPump"
+ * @param label loggin label
+ * @param pin   GPIO pin number.
+ * @param led_pin GPIO of status LED if present.
+ */
 	RelaySwitcher(const std::string& name, const std::string& label, unsigned pin,
 				 unsigned led_pin = 0);
 	virtual ~RelaySwitcher();
+  /**
+   * @brief switch on equipment.
+   * 
+   */
 	void SwitchOn()override final;
+  /**
+   * @brief switch off equipment
+   * 
+   */
 	void SwitchOff()override final;
+  /**
+   * @brief Stop equipment and any associted timers.
+   * 
+   */
 	void Stop() override;
+  /**
+   * @brief Configure any required on/off states.
+   * 
+   */
 	void RequiredStates(const Equipment&, const pt::ptree& );
+  /**
+   * @brief state of relay.
+   * 
+   * @return RelayState 
+   */
 	inline RelayState State() const {return state_;}
+  /**
+   * @brief relay state as a string.
+   * 
+   * @return const std::string& 
+   */
 	const std::string& StateStr() const;
+  /**
+   * @brief Time point to turn equipment on.
+   * 
+   * @return std::chrono::system_clock::time_point 
+   */
 	inline std::chrono::system_clock::time_point OnTime()const {return on_time_;}
+  /**
+   * @brief time point to turn equipment off.
+   * 
+   * @return std::chrono::system_clock::time_point 
+   */
 	inline std::chrono::system_clock::time_point OffTime()const {return off_time_;}
+  /**
+   * @brief Get the Status List object
+   * 
+   * @return StatusList Return status as a vector of string pairs.
+   */
 	virtual StatusList GetStatusList();
+  /**
+   * @brief logging label
+   * 
+   * @return const std::string& 
+   */
 	inline const std::string& Label()const {return label_;};
+  inline void setAuxStatus(std::pair<std::string, std::string> aux){ auxStatus_ = aux;  };
 private:
 	bool CheckConditions(SwitchRequest );
 	unsigned pin_;			// GPIO pin for equipment control
@@ -85,6 +145,7 @@ private:
 	std::chrono::system_clock::time_point on_time_;
 	std::chrono::system_clock::time_point off_time_;
 	std::string label_;
+  std::pair<std::string, std::string> auxStatus_{std::make_pair(std::string(), std::string())}; // set by scheduling if needed.
 };
 
 } // namespace

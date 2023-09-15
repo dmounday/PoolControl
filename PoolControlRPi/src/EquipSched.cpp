@@ -23,8 +23,8 @@ EquipSched::EquipSched(boost::asio::io_context& ioc,
             runNow_{false}, schedProp_{node}
 {
   GetStartStop(schedProp_);
-
 }
+
 void EquipSched::GetStartStop(const pt::ptree& node){
   try {
     std::string start = node.get<std::string> ("Start", "manual");
@@ -36,7 +36,7 @@ void EquipSched::GetStartStop(const pt::ptree& node){
       startTime = "manual";
       stopTime = "manual";
     }
-    PLOG(plog::debug)<< ep_->Name() << "Manual:" << manual_ << " Start: "<< startTime << " Stop: "<< stopTime;
+    PLOG(plog::debug)<< ep_->Name() << " Manual:" << manual_ << " Start: "<< startTime << " Stop: "<< stopTime;
   } catch (pt::ptree_error &e) {
     PLOG(plog::error) << "EquipSched file error: " << e.what ();
     throw(e);
@@ -97,7 +97,7 @@ void EquipSched::CalcStartStopTimes () {
 
 bool EquipSched::RunNow(){
   CalcStartStopTimes();
-  return runNow_;
+  return runNow_ && EquipSched::runSchedule;
 }
 
 long unsigned EquipSched::StopAfter () {
@@ -164,7 +164,8 @@ void EquipSched::Run(){
   timer_.expires_after(std::chrono::seconds(after));
   timer_.async_wait(
       std::bind(&EquipSched::StartEquipment, this, std::placeholders::_1));
-
-
 }
+// static definition.
+bool EquipSched::runSchedule {true};
+
 } /* namespace pentair_control */

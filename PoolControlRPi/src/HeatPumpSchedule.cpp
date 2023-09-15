@@ -41,7 +41,7 @@ void HeatPumpSchedule::SetSensor(const pt::ptree& props){
   sensor_prop_.put("Temp", temp_);
   sensor_prop_.put("State", statestr);
   if ( sTimer_.cancel()> 0){
-    const boost::system::error_code ec;
+    const boost::system::error_code ec{boost::asio::error::in_progress};
     ReSample(ec);
   }
 }
@@ -53,12 +53,15 @@ void HeatPumpSchedule::ReSample (const boost::system::error_code &ec) {
     if (sTemp >= temp_) {
       DBG_LOG(PLOG(plog::debug)<< "HeatPump off: "<< sTemp << " "<< temp_);
       Equip ()->SwitchOff ();
+      Equip()->setAuxStatus(std::make_pair(std::string("heat"), std::string("Standby")));
     } else if (sTemp < temp_-diff_) {
       DBG_LOG(PLOG(plog::debug)<< "HeatPump ON: " << sTemp << " "<< temp_);
       Equip ()->SwitchOn ();
+      Equip()->setAuxStatus(std::make_pair(std::string("heat"), std::string("Running")));
     }
   } else {
     Equip()->SwitchOff();
+    Equip()->setAuxStatus(std::make_pair(std::string("heat"), std::string("OFF")));
   }
   sTimer_.expires_after(std::chrono::seconds(sensorInterval_));
   sTimer_.async_wait(

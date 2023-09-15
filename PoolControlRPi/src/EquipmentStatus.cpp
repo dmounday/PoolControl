@@ -13,7 +13,7 @@ namespace pentair_control {
 EquipmentStatus::EquipmentStatus (GblData const &gD, boost::string_view req) {
   Equipment equip = gD.AllEquipment ();
   PLOG(plog::debug) << req;
-
+  // loop thru the equipment list and get status list for each.
   for (auto const& [id, ptr] : equip) {
     pt::ptree unit;  //  contains units state
     StatusList status_list = ptr->GetStatusList ();

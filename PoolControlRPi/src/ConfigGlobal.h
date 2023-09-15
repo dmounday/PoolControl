@@ -21,7 +21,12 @@
 
 
 namespace pentair_control {
-
+/**
+ * @brief ConfigGobal is a temporaty wrapper that creates equipment configuration as
+ * defined by the configurtion file and the scheduling from the schedule file. The
+ * configuraiton and scheduing contained in the GblData object.
+ * 
+ */
 class ConfigGlobal {
 
 static inline const std::string LEVELSHIFTER{"LogicLevelShifter"};
@@ -75,10 +80,20 @@ struct PlogConfig{
 };
 
 public:
-/**
+/*
  * ConfigGlobal is a temporary wrapper around the functions that initialize the
  * GblData from the configuration properties and the run properties (scheduling).
- * @param GblData object.
+ */
+
+/**
+ * @brief Construct a new Config Global object
+ * ConfigGlobal is a temporary wrapper around the functions that initialize the
+ * GblData from the configuration properties and the run properties (scheduling).
+ * 
+ * @param configFile path to the configuration file.
+ * @param runSchedFile path to the schdule file.
+ * @param severity logging severity level.
+ * @param consoleLog if true configure logging to console.
  */
   ConfigGlobal (GblData&,
                 const char* configFile,

@@ -14,6 +14,11 @@
 
 namespace pentair_control {
 namespace pt = boost::property_tree;
+/**
+ * @brief LogicLevelShifter is used to enable/disable the 3.3v/5v
+ * bidirectional logic shifter.
+ * 
+ */
 class LogicLevelShifter : public GPIO::DigitalOut {
 public:
   LogicLevelShifter (const pt::ptree& node);

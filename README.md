@@ -26,6 +26,7 @@ The Schedule pull-down menu item presents the scheduling fill-in screen:
 
 ## Generalized configuration of sensors and equpment.
 Written in C++17 
+Boost ASIO and Property Tree.
 
 To build see the README in the PoolControllRPi directory.
 

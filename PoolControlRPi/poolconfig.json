@@ -74,18 +74,18 @@
 				{
 				 "HeatPumpInTemp":
 				 	{
-					 "ProbeID": "28-01144d525baa",
+					 "ProbeID": "28-03019794497a",
 					 "Correction": 0.0
 				 	},
 				"HeatPumpOutTemp":
 					{
 					"ProbeID": "28-3c01d6078912",
-					"Correction": -1.125
+					"Correction": -0.500
 					},
 				"AirTemp":
 					{
 					"ProbeID": "28-3c01b556939e",
-					"Correction": -1.032
+					"Correction": 0.778
 					}
 				}
 		}
@@ -99,36 +99,36 @@
       
 "Relays": 
       {
-	  "MainPump":
+	    "MainPump":
     	{
-		"label": "Pump",
+		    "label": "Pump",
         "RelayGPIO": "17",
         "SwitchGPIO": "24",
         "LEDGPIO": 6
-        },
-       "Booster":
-        {
-		"label": "Cleaner",
+      },
+      "Booster":
+      {
+		    "label": "Cleaner",
         "RelayGPIO": "27",
         "SwitchGPIO": "16",
         "LEDGPIO": "13"
-         },
-        "IC40":
-        {
-		"label": "Sanitizer",
+      },
+      "IC40":
+      {
+		    "label": "Sanitizer",
         "RelayGPIO": "22",
         "SwitchGPIO": "5",
         "LEDGPIO":"19"
-          },
+      },
       "Lighting":
-        {
-		"label": "Light",
+      {
+		    "label": "Light",
         "RelayGPIO": "26",
         "SwitchGPIO": "12",
         "LEDGPIO":"21"
-        },
+      },
       "HeatPump": {
-		"label": "Heater",
+		    "label": "Heater",
         "RelayGPIO": "18"
       }
 },
