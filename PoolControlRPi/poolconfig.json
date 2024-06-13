@@ -5,51 +5,15 @@
 		"FileSize": 100000,
 		"FileCount": 10
 	},
+"ScheduleFile": "/var/lib/poolsmartz/schedule-rt.json",
 "_comment1": "Enable the 3.3 - 5v logic chip",
 "LogicLevelShifter": {
 	"GPIO": 23
 },
 "_comment4": "Array of sensors - parameters are specific to sensor",
-"WirelessHandler":
-	{
-	"_comment3": "Interface to MightyHat UPS and wireless R/T",
-	 "SerialPort": "/dev/ttyAMA0",
-	 "BaudRate": 115200,
-	 "Destination": "Wireless"
-	},
+
 "Sensors":
-		{"Wireless": 
-			{
-			"_comment4": "Sensor data passed from MightyHat serial port",
-			"label": "WaterTemps",
-			 "Sensors":  {
-				 "PoolTemp":
-					 {
-					"RemoteID":  790,
-					"MsgPrefix":  "WC",
-					"Correction": -0.313
-					 },
-				 "CaseTemp":
-					 {
-					"RemoteID":  790,
-					"MsgPrefix":  "CC",
-					"Correction": -0.351
-					 },
-				"CaseHum":
-					{
-					"RemoteID":  790,
-					"MsgPrefix":  "Hum"
-					},
-        "FilterPressure": {
-            "RemoteID": 791,
-            "MsgPrefix": "Psi"
-          },
-        "FilterBattLevel": {
-            "RemoteID": 791,
-            "MsgPrefix": "Batt"
-          }
-		}
-	},
+	{
 		"SI7021": {
 			"label": "Controls",
 			"Sample-Interval": 60,
@@ -74,12 +38,12 @@
 				{
 				 "HeatPumpInTemp":
 				 	{
-					 "ProbeID": "28-03019794497a",
+					 "ProbeID": "28-3c01d6077312",
 					 "Correction": 0.0
 				 	},
 				"HeatPumpOutTemp":
 					{
-					"ProbeID": "28-3c01d6078912",
+					"ProbeID": "28-3c01d607ac9d",
 					"Correction": -0.500
 					},
 				"AirTemp":

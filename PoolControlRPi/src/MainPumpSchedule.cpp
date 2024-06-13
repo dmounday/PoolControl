@@ -23,17 +23,19 @@ void MainPumpSchedule::ReSample (const boost::system::error_code &ec) {
   PLOG(plog::debug) << "guardTemp " << guardState_;
   if (ec == boost::asio::error::operation_aborted)
     return;
-  if (!RunNow ()) {
-    // If pump is not now running then check freeze guard state.
-    float sTemp = gD_.GetSensorValue (sensorID_);
-    if (guardState_) {
-      if (sTemp <= guardTemp_) {
-        PLOG(plog::debug) << "MainPump on: " << sTemp << " < GuardTemp: "
-            << guardTemp_;
-        Equip ()->SwitchOn ();
-      } else if (Equip ()->State () == RelaySwitcher::RelayState::ON) {
-        PLOG(plog::debug) << "MainPump off: " << sTemp << " > GuardTemp";
-        Equip ()->SwitchOff ();
+   // If pump is not now running then check freeze guard state.
+  if (Equip()->State() == RelaySwitcher::RelayState::OFF) {
+    if (!RunNow()) {
+      float sTemp = gD_.GetSensorValue(sensorID_);
+      if (guardState_) {
+        if (sTemp <= guardTemp_) {
+          PLOG(plog::debug) << "MainPump on: " << sTemp << " < GuardTemp: "
+                            << guardTemp_;
+          Equip()->SwitchOn();
+        } else if (Equip()->State() == RelaySwitcher::RelayState::ON) {
+          PLOG(plog::debug) << "MainPump off: " << sTemp << " > GuardTemp";
+          Equip()->SwitchOff();
+        }
       }
     }
   }

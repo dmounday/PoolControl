@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+set -e
+
+# create poolsmartz user
+if  ! getent passwd poolsmartz >/dev/null 2>/dev/null; then
+  adduser --system --home /var/lib/poolsmartz --no-create-home poolsmartz
+  addgroup --system poolsmartz
+  adduser poolsmartz poolsmartz
+  # allow access to GPIO and hardware pins.
+  adduser poolsmartz gpio
+  adduser poolsmartz i2c
+  adduser poolsmartz spi
+fi
+mkdir -p /var/lib/poolsmartz
+if [ -d /var/lib/poolsmartz ]; then
+  chown poolsmartz:poolsmartz /var/lib/poolsmartz
+fi
+mkdir -p /var/log/poolsmartz
+if [ -d /var/log/poolsmartz ]; then
+  chown poolsmartz:poolsmartz /var/log/poolsmartz
+fi
+mkdir -p /var/run/poolsmartz
+chown poolsmartz:poolsmartz /var/run/poolsmartz
+systemctl enable poolsmartz
+systemctl start poolsmartz
+
+

@@ -97,7 +97,7 @@ void EquipSched::CalcStartStopTimes () {
 
 bool EquipSched::RunNow(){
   CalcStartStopTimes();
-  return runNow_ && EquipSched::runSchedule;
+  return runNow_ && EquipSched::isRunSchedule();
 }
 
 long unsigned EquipSched::StopAfter () {

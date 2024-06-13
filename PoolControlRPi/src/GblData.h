@@ -94,8 +94,11 @@ public:
   ConfigScheduling& Scheduling()const;
   void
   SetLogicShifter (std::shared_ptr<LogicLevelShifter> ls);
+
   void
   SetWirelessHandler(std::shared_ptr<WirelessHandler>);
+
+  std::shared_ptr<WirelessHandler> GetWirelessHandler();
   void
   SetSensorDope (std::shared_ptr<SensorDope> sd);
   void
@@ -106,7 +109,7 @@ public:
   AddEquipment (std::string const &id, std::shared_ptr<EquipmentBase> ep);
   void
   EnableLogicShifter ();
-  void SetScheduleFile(const char* name);
+  void SetRunScheduleFile(const char* name);
   /**
    * @brief Save the schedule into a file.
    * 

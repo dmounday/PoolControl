@@ -1,29 +1,25 @@
 # systemd service file to start PoolControlRPi
 
 [Unit]
-Description=PoolControlRPi control program to control Pool Pump, SWG, Booster, HeatPump and Lighting
+Description= poolsmartz control package to control Pool Pump, SWG, Booster, HeatPump and Lighting
 Wants=network.target
 
 [Service]
 Type=simple
-# Run as normal pi user 
-User=pi
-Group=pi
+# Run as poolsmartz user 
+User=poolsmartz
+Group=poolsmartz
 WorkingDirectory=/home/pi
 
 Nice=5
 
-# uncomment the next line for a more verbose log output
-ARG1="poolconfig.json"
-ARG2="schedule.json"
-ARG3="INFO"
-ExecStart=/home/pi/PoolControlRPi $ARG1 $ARG2 $ARG3
+ExecStart=/bin/poolsmartz /etc/poolsmartz/poolconfig.json /etc/poolsmartz/schedule.json debug
 # Use SIGINT to stop
 KillSignal=SIGINT
 # Auto restart on crash
 Restart=on-failure
 # Tag things in the log
-SyslogIdentifier=PoolControlRPi
+SyslogIdentifier=poolsmartz
 #StandardOutput=syslog
 
 [Install]

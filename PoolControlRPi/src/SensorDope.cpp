@@ -9,15 +9,15 @@
 
 namespace pentair_control {
 
-SensorDope::SensorDope (GblData& gD, std::shared_ptr<WirelessHandler> wh,
-                        const pt::ptree &sensors) {
+SensorDope::SensorDope (GblData& gD,  const pt::ptree &sensors) {
   try {
+    if ( gD.GetWirelessHandler()) {
     const auto &wirelessProp = sensors.get_child (WIRELESS);
-    auto wireless = std::make_shared<WirelessSensors> (wh, WIRELESS,
+    auto wireless = std::make_shared<WirelessSensors> (gD.GetWirelessHandler(), WIRELESS,
                                                        wirelessProp);
     gD.AddEquipment(WIRELESS, std::dynamic_pointer_cast<EquipmentBase> (wireless));
     MapIDs(wireless->GetSensorIDs(), gD.Equip(WIRELESS));
-
+    }
     const auto &si7021tree = sensors.get_child (SI7021S);
     auto si7021p = std::make_shared<SI7021> (gD.IOC(), SI7021S, si7021tree);
     gD.AddEquipment(SI7021S, std::dynamic_pointer_cast<EquipmentBase> (si7021p));

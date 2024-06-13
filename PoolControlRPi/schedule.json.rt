@@ -1,5 +1,6 @@
 {
     "Schedule": {
+        "RunSchedule": "false",
         "MainPump": {
             "Start": "08:00",
             "Stop": "20:00",
@@ -33,7 +34,7 @@
                 "ID": "HeatPumpInTemp",
                 "Delay": "10",
                 "Interval": "15",
-                "Temp": "25.5576",
+                "Temp": "31.1135998",
                 "Diff": "0.8"
             }
         }

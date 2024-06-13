@@ -19,6 +19,7 @@ using namespace boost::placeholders;
 
 
 namespace pentair_control {
+  inline const std::string SCHEDULE{"Schedule"};
   inline const std::string RUNSCHEDULE{"RunSchedule"};
   inline const std::string SUCCESS("Success");
   inline const std::string FAILURE("Failure");

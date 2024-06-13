@@ -55,6 +55,9 @@ void
 GblData::SetWirelessHandler(std::shared_ptr<WirelessHandler> wh){
   pimpl->SetWirelessHandler(wh);};
 
+std::shared_ptr<WirelessHandler> GblData::GetWirelessHandler(){
+  return pimpl->GetWirelessHandler();
+}
 void GblData::SetSensorDope (std::shared_ptr<SensorDope> sd) {
   pimpl->SetSensorDope (sd);
 }
@@ -74,8 +77,8 @@ void GblData::EnableLogicShifter () {
 pt::ptree& GblData::RunProperties()const{
   return pimpl->RunProperties();
 }
-void GblData::SetScheduleFile(const char* name){
-  pimpl->SetScheduleFile(name);
+void GblData::SetRunScheduleFile(const char* name){
+  pimpl->SetRunScheduleFile(name);
 }
 void GblData::SaveSchedules() const{
   pimpl->SaveSchedules();

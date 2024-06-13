@@ -54,7 +54,7 @@ public:
    * @param boost::property_tree (child of Sensors node).
    */
 
-  SensorDope (GblData& gD, std::shared_ptr<WirelessHandler>, const pt::ptree &sensors);
+  SensorDope (GblData& gD, const pt::ptree &sensors);
   virtual ~SensorDope ();
   /**
    * Return the shared_ptr to the SensorBase that monitors

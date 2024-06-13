@@ -58,7 +58,7 @@ public:
     /// and update the objects start and stop times.
     void CalcStartStopTimes();
 
-    /// @brief Return true if schedule is manual.
+    /// @brief Return true if scheduling for this equipment is manual.
     /// @return true if manual.
     inline bool Maunal()const {return manual_;};
 
@@ -67,7 +67,12 @@ public:
     /// @return true if time to run.
     bool RunNow();
     inline RelayPtr Equip()const {return std::static_pointer_cast<RelaySwitcher>(ep_);};
+
+    /// @brief Return true if secheduling is enabled.
+    /// @return 
     static bool isRunSchedule() { return runSchedule; };
+    /// @brief Enable or disable scheduling.
+    /// @param run 
     static void setRunSchedule(bool run){ runSchedule = run;};
 private:
     boost::asio::io_context& ioc_;

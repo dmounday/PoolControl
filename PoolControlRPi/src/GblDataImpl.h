@@ -37,6 +37,10 @@ public:
   SetLogicShifter(std::shared_ptr<LogicLevelShifter> ls){ logicShifter_ = ls;};
   inline void
   SetWirelessHandler(std::shared_ptr<WirelessHandler> wh){wirelessHandler_ = wh;};
+
+  inline std::shared_ptr<WirelessHandler>
+   GetWirelessHandler() const {return wirelessHandler_;};
+
   inline void
   SetSensorDope(std::shared_ptr<SensorDope> sd){sensorDope_ = sd;};
 
@@ -54,10 +58,8 @@ public:
   AddEquipment(std::string const& id, std::shared_ptr<EquipmentBase> ep ){
     equipment_[id] = ep;
   }
-  inline void
-  EnableLogicShifter(){logicShifter_->EnableShifter();};
-
-  void SetScheduleFile(const char* fileName);
+  inline void EnableLogicShifter(){logicShifter_->EnableShifter();};
+  void SetRunScheduleFile(const char* fileName);
   void SaveSchedules() const;
   void Run();
 private:
@@ -69,7 +71,7 @@ private:
   std::shared_ptr<LogicLevelShifter> logicShifter_;  // +3.3v -> 5V shifter enable
   std::shared_ptr<WirelessHandler> wirelessHandler_;
   pt::ptree runProps_;
-  std::string schedFile_;   // run properties file name
+  std::string runScheduleFile_; // ui modified schedule file 
   Equipment equipment_;
   void DoWaitStop();
   void StartEquipment();

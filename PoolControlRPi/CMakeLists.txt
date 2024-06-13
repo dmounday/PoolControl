@@ -3,10 +3,10 @@ cmake_minimum_required(VERSION 3.18)
 # Set Tool chain variables
 set(CMAKE_TOOLCHAIN_FILE RPiCrossTools.cmake)
 
-project(PoolControlRPi VERSION 1.0
+project(poolsmartz VERSION 1.1.0
         DESCRIPTION "PoolController on RPi"
   LANGUAGES CXX)
-  
+ 
 include(CMakePrintHelpers)
 include(ExternalProject)
 cmake_print_variables(CMAKE_PROJECT_NAME PROJECT_NAME CMAKE_INSTALL_PREFIX

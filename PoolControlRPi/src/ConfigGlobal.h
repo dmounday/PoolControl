@@ -28,7 +28,8 @@ namespace pentair_control {
  * 
  */
 class ConfigGlobal {
-
+static inline const std::string LOGGING {"Logging"};
+static inline const std::string SCHEDULEFILE {"ScheduleFile"};
 static inline const std::string LEVELSHIFTER{"LogicLevelShifter"};
 static inline const std::string WIRELESSHANDLER{"WirelessHandler"};
 static inline const std::string SENSORS{"Sensors"};
@@ -65,7 +66,7 @@ struct PlogConfig{
         severity = plog::debug;
       else if (!strcmp(logLevel, "verbose"))
         severity = plog::verbose;
-      std::cerr << "Log to "<< filePath;
+      std::cerr << "Log to "<< filePath << " UID: " << getuid() << '\n';
       static plog::RollingFileAppender<plog::TxtFormatter> fileAppender(filePath.c_str(), fileSz, fileCnt);
       static plog::ConsoleAppender<plog::TxtFormatter> consoleAppender;
       if ( consoleLog )
@@ -90,14 +91,14 @@ public:
  * ConfigGlobal is a temporary wrapper around the functions that initialize the
  * GblData from the configuration properties and the run properties (scheduling).
  * 
- * @param configFile path to the configuration file.
- * @param runSchedFile path to the schdule file.
+ * @param configFile name configuration file.
+ * @param schedFile name of static schdule file.
  * @param severity logging severity level.
  * @param consoleLog if true configure logging to console.
  */
   ConfigGlobal (GblData&,
-                const char* configFile,
-                const char* runSchedFile,
+                const char *configFile,
+                const char *schedFile,
                 const char* severity,
                 bool consoleLog );
 
@@ -108,7 +109,7 @@ private:
     * objects.
     * @param config_file
     */
-  void EquipConfig(const pt::ptree&);
+  bool EquipConfig(const pt::ptree&);
   void StateConfig(const pt::ptree&);
   void SensorConfig(const pt::ptree& );
   void RelayConfig(const pt::ptree&);
@@ -116,9 +117,10 @@ private:
   /**
     * Read the runtime file that specifies the scheduling and
     * variable equipment configuration (i.e. pump speed, on/off temps, ...).
-    * @param run_file
+    * @param schedFile name of static schedule file
+    * @param runFile run file name (SCHEDULEFILE property) form config file.
     */
-   bool RunConfig(const std::string& schedFile);
+   bool RunConfig(const char* schedFile, const std::string& runFile );
 
 };
 

@@ -74,6 +74,7 @@ std::string ConfigScheduling::SetSchedules(boost::string_view json) {
         PLOG(plog::error) << "Schedule JSON bad format [" << name << "]";
       }
     }
+    tree.put("RunSchedule", EquipSched::isRunSchedule()? "true": "false");
     gD_.SaveSchedules();
     return SUCCESS;
   } catch (pt::ptree_bad_path& e) {
@@ -94,8 +95,9 @@ std::string ConfigScheduling::SetRunSchedule(boost::string_view json) {
     bool run = tree.get<bool>(RUNSCHEDULE, false);
     PLOG(plog::debug) << RUNSCHEDULE << ": " << run << " isRun: " << EquipSched::isRunSchedule();
     EquipSched::setRunSchedule(run);
-    gD_.RunProperties().put(RUNSCHEDULE, run);
+    gD_.RunProperties().put(SCHEDULE + "." + RUNSCHEDULE, run);
     // if runSchedule then run current schedules. Otherwise manual on/off.
+    PLOG(plog::debug) << GetSchedules();
     RunSchedule();
     gD_.SaveSchedules();
     return SUCCESS;

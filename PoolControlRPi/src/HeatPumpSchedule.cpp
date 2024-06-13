@@ -4,7 +4,7 @@
  *  Created on: Feb 11, 2021
  *      Author: dmounday
  */
-//#define DEBUG
+#define DEBUG
 #ifdef DEBUG
 #define DBG_LOG(x) x
 #else
@@ -50,16 +50,17 @@ void HeatPumpSchedule::ReSample (const boost::system::error_code &ec) {
     return;
   float sTemp = gD_.GetSensorValue (sensorId_);
   if (state_ == State::ON ) {
-    if (sTemp >= temp_) {
-      DBG_LOG(PLOG(plog::debug)<< "HeatPump off: "<< sTemp << " "<< temp_);
-      Equip ()->SwitchOff ();
-      Equip()->setAuxStatus(std::make_pair(std::string("heat"), std::string("Standby")));
-    } else if (sTemp < temp_-diff_) {
-      DBG_LOG(PLOG(plog::debug)<< "HeatPump ON: " << sTemp << " "<< temp_);
+    if (sTemp < temp_-diff_) {
+      DBG_LOG(PLOG(plog::debug)<< "HeatPump SwitchON: " << sTemp << " "<< temp_);
       Equip ()->SwitchOn ();
       Equip()->setAuxStatus(std::make_pair(std::string("heat"), std::string("Running")));
+    } else {
+      DBG_LOG(PLOG(plog::debug)<< "HeatPump SwitchOFF Standby: "<< sTemp << " "<< temp_);
+      Equip ()->SwitchOff ();
+      Equip()->setAuxStatus(std::make_pair(std::string("heat"), std::string("Standby")));
     }
   } else {
+    DBG_LOG(PLOG(plog::debug)<< "HeatPump SwitchOff: "<< sTemp << " "<< temp_);
     Equip()->SwitchOff();
     Equip()->setAuxStatus(std::make_pair(std::string("heat"), std::string("OFF")));
   }

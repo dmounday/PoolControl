@@ -66,11 +66,12 @@ GblDataImpl::StopEquipment(){
     e.second->Stop(); // Stop also switches off relays
   }
 }
-void GblDataImpl::SetScheduleFile(const char* name){
-  schedFile_ = name;
+
+void GblDataImpl::SetRunScheduleFile(const char* name){
+  runScheduleFile_ = name;
 }
 void GblDataImpl::SaveSchedules() const{
-  std::string fn = schedFile_+".rt";
+  std::string fn = runScheduleFile_;
   pt::write_json(fn, runProps_);
 }
 void
