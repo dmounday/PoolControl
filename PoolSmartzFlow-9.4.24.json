@@ -1,0 +1,2309 @@
+[
+    {
+        "id": "31dc8608ec9fb87f",
+        "type": "tab",
+        "label": "PoolSmartz",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "9caf06bcd50b03fb",
+        "type": "subflow",
+        "name": "HeatPumpTemp (2)",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "0586947e121e6654",
+        "type": "subflow",
+        "name": "ToggleButton",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 180,
+                "y": 200,
+                "wires": [
+                    {
+                        "id": "653c4f9073f0e675"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1000,
+                "y": 320,
+                "wires": [
+                    {
+                        "id": "7cd770c3af4fb422",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "3807f29f.3849be",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#5200cc",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "2c2f3f43.feb09",
+        "type": "ui_tab",
+        "name": "Sensors",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "6043f90a.e67ea8",
+        "type": "ui_tab",
+        "name": "Schedule",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "d6d3c358.5fb46",
+        "type": "ui_tab",
+        "name": "Pool",
+        "icon": "radio_button_checked",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "538826397e7d8e74",
+        "type": "ui_tab",
+        "name": "SWG",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "77e158572dfa500c",
+        "type": "ui_group",
+        "name": "Status",
+        "tab": "d6d3c358.5fb46",
+        "order": 1,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a9460d7106236a34",
+        "type": "ui_group",
+        "name": "Equipment",
+        "tab": "2c2f3f43.feb09",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "19efb48bf8db710e",
+        "type": "ui_group",
+        "name": "Sched",
+        "tab": "6043f90a.e67ea8",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "a88fdbaa22dad647",
+        "type": "ui_group",
+        "name": "HeatPump",
+        "tab": "d6d3c358.5fb46",
+        "order": 4,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "048e5c0b20f680ff",
+        "type": "ui_group",
+        "name": "IC40 Status",
+        "tab": "538826397e7d8e74",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "841919a879c24bf8",
+        "type": "function",
+        "z": "9caf06bcd50b03fb",
+        "name": "SensorsURL",
+        "func": "var url = env.get(\"poolgwurl\");\nmsg.url = url + \"/sched\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "7281596b3cddf166"
+            ]
+        ]
+    },
+    {
+        "id": "8a7667cdef0aeba7",
+        "type": "function",
+        "z": "9caf06bcd50b03fb",
+        "name": "SetTempValues",
+        "func": "msg.payload = Number(msg.payload.Schedule.HeatPump.Sensor.Temp*1.8+32)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 740,
+        "y": 140,
+        "wires": [
+            [
+                "d3cab50806100952"
+            ]
+        ]
+    },
+    {
+        "id": "ed3a2bb4390b4a46",
+        "type": "http request",
+        "z": "9caf06bcd50b03fb",
+        "name": "HTTP /setSensors",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 970,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7281596b3cddf166",
+        "type": "http request",
+        "z": "9caf06bcd50b03fb",
+        "name": "HTTP Get Sensors",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 330,
+        "y": 140,
+        "wires": [
+            [
+                "6f62c240bc4e928c",
+                "8a7667cdef0aeba7"
+            ]
+        ]
+    },
+    {
+        "id": "087c80de518ea399",
+        "type": "ui_ui_control",
+        "z": "9caf06bcd50b03fb",
+        "name": "Change Tab",
+        "events": "change",
+        "x": 170,
+        "y": 40,
+        "wires": [
+            [
+                "a64ceb30fdfb73dc"
+            ]
+        ]
+    },
+    {
+        "id": "f09869703bc1b0dc",
+        "type": "function",
+        "z": "9caf06bcd50b03fb",
+        "name": "setSensors payload",
+        "func": "var url = env.get(\"poolgwurl\");\nmsg.url = url + \"/setSensors\";\nmsg.payload = {\n    HeatPump: {State: msg.payload},\n};\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 200,
+        "wires": [
+            [
+                "ed3a2bb4390b4a46"
+            ]
+        ]
+    },
+    {
+        "id": "ba84bc7170e4a2eb",
+        "type": "ui_switch",
+        "z": "9caf06bcd50b03fb",
+        "name": "HeatPump On/Off",
+        "label": "Pool Heater",
+        "tooltip": "",
+        "group": "a88fdbaa22dad647",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "on",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "msg.oncolor",
+        "offvalue": "off",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "msg.offcolor",
+        "animate": true,
+        "x": 490,
+        "y": 200,
+        "wires": [
+            [
+                "f09869703bc1b0dc"
+            ]
+        ]
+    },
+    {
+        "id": "d3cab50806100952",
+        "type": "ui_slider",
+        "z": "9caf06bcd50b03fb",
+        "name": "Temp",
+        "label": "Temp",
+        "tooltip": "",
+        "group": "a88fdbaa22dad647",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "65",
+        "max": "92",
+        "step": 1,
+        "x": 890,
+        "y": 140,
+        "wires": [
+            [
+                "ee9c470fc49790c5"
+            ]
+        ]
+    },
+    {
+        "id": "ee9c470fc49790c5",
+        "type": "function",
+        "z": "9caf06bcd50b03fb",
+        "name": "setSensors Temp ",
+        "func": "var url = env.get(\"poolgwurl\");\nmsg.url = url + \"/setSensors\";\nmsg.payload = {\n    HeatPump: {Temp: (msg.payload-32)*.5556},\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1070,
+        "y": 140,
+        "wires": [
+            [
+                "ed3a2bb4390b4a46"
+            ]
+        ]
+    },
+    {
+        "id": "6f62c240bc4e928c",
+        "type": "function",
+        "z": "9caf06bcd50b03fb",
+        "name": "Setup Switch",
+        "func": "msg.payload = msg.payload.Schedule.HeatPump.Sensor.State;\nif (msg.payload == \"on\"){\n    msg.label = \"on\";\n    //node.send({ ui_control: { oncolor: \"#ff0000\" }, label: \"on\", payload: true });   \n} else {\n    //node.send({ ui_control: { offcolor: \"#008000\" }, label: \"off\", payload: false});\n    msg.label = \"off\";\n}\nmsg.oncolor = \"#ff0000\";\nmsg.offcolor = \"008000\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "ba84bc7170e4a2eb"
+            ]
+        ]
+    },
+    {
+        "id": "a64ceb30fdfb73dc",
+        "type": "switch",
+        "z": "9caf06bcd50b03fb",
+        "name": "Watch for Pool Tab",
+        "property": "name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Pool",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 390,
+        "y": 80,
+        "wires": [
+            [
+                "841919a879c24bf8"
+            ]
+        ]
+    },
+    {
+        "id": "28de0355edc7fe8b",
+        "type": "catch",
+        "z": "9caf06bcd50b03fb",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 270,
+        "y": 520,
+        "wires": [
+            [
+                "f76bdfd474b8d1d6"
+            ]
+        ]
+    },
+    {
+        "id": "f76bdfd474b8d1d6",
+        "type": "debug",
+        "z": "9caf06bcd50b03fb",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "7cd770c3af4fb422",
+        "type": "switch",
+        "z": "0586947e121e6654",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "CONTROL",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "CONTROL",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 790,
+        "y": 320,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "653c4f9073f0e675",
+        "type": "function",
+        "z": "0586947e121e6654",
+        "name": "Initialize-switch button state",
+        "func": "\nvar state = context.get(\"state\")||\"OFF\";\n\n//  Look for a !X message to get values -- no button push.\nif ( msg.topicSet == \"ON\" || msg.topicSet == \"OFF\"){\n    context.set(\"colourOFF\", msg.colourOFF);\n    context.set(\"colourON\", msg.colourON);\n    context.set(\"textOFF\", msg.textOFF);\n    context.set(\"textON\", msg.textON);\n    context.set(\"fontOFF\", msg.fontOFF);\n    context.set(\"fortON\", msg.fontON);\n    context.set(\"payloadOFF\", msg.payloadOFF);\n    context.set(\"payloadON\", msg.payloadON);\n    state = msg.topicSet;\n}\n// If button pushed change state.\nif ( msg.payload == \"X\" )\n{\n    if (state == \"OFF\") {\n        state = \"ON\";\n    } else { // topicSet should be \"STOP\"\n        state = \"OFF\"\n    }\n    context.set(\"state\", state);\n}\nif (state == \"OFF\")\n{\n    //  Condition OFF\n    msg.payload = context.get(\"payloadOFF\");\n    msg.colour = context.get(\"colourOFF\");\n    msg.txt = context.get(\"textOFF\");\n    msg.fontclr = context.get(\"fontOFF\");\n} else\n{\n    //  Condition ON\n    msg.payload = context.get(\"payloadON\");\n    msg.colour = context.get(\"colourON\");\n    msg.txt = context.get(\"textON\");\n    msg.fontclr = context.get(\"fontON\");\n}\n \nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 280,
+        "wires": [
+            [
+                "3ed4338f7f6e3b97",
+                "7cd770c3af4fb422"
+            ]
+        ]
+    },
+    {
+        "id": "3ed4338f7f6e3b97",
+        "type": "ui_button",
+        "z": "0586947e121e6654",
+        "name": "ToggleButton",
+        "group": "77e158572dfa500c",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "{{msg.txt}}",
+        "tooltip": "",
+        "color": "{{msg.fontclr}}",
+        "bgcolor": "{{msg.colour}}",
+        "className": "",
+        "icon": "",
+        "payload": "X",
+        "payloadType": "str",
+        "topic": "CONTROL",
+        "topicType": "str",
+        "x": 550,
+        "y": 400,
+        "wires": [
+            [
+                "653c4f9073f0e675"
+            ]
+        ]
+    },
+    {
+        "id": "9b6a076689731747",
+        "type": "inject",
+        "z": "31dc8608ec9fb87f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 100,
+        "wires": [
+            [
+                "991e98abdcc839c5"
+            ]
+        ]
+    },
+    {
+        "id": "262e51f7108f4a37",
+        "type": "http request",
+        "z": "31dc8608ec9fb87f",
+        "name": "PoolGW Status",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 610,
+        "y": 100,
+        "wires": [
+            [
+                "dc3751e61ff19048",
+                "b86b52277aa14a02"
+            ]
+        ]
+    },
+    {
+        "id": "dc3751e61ff19048",
+        "type": "json",
+        "z": "31dc8608ec9fb87f",
+        "name": "Parse JSON status",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 180,
+        "y": 180,
+        "wires": [
+            [
+                "19d5bdd0dec4aad5",
+                "5e9aad0c22c11448",
+                "bbbc047dde6429a1",
+                "e2e9a3e348dc489d",
+                "99f29bf502c96b03",
+                "4b3c163eae9a1b43",
+                "72b0327c77c6309b",
+                "e7853a7447239f69",
+                "a22b631164a5dbeb",
+                "de57f6655bd0c11f",
+                "d72649ee8613002e",
+                "d5f72f7f7bc373f7",
+                "360c4aa3323bf103",
+                "ced8dce908f2e409",
+                "6b1a63de0052d9a0",
+                "338f782a80d2b373"
+            ]
+        ]
+    },
+    {
+        "id": "454585cc3302e1b7",
+        "type": "ui_gauge",
+        "z": "31dc8608ec9fb87f",
+        "name": "Water Temp Guage",
+        "group": "77e158572dfa500c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Water Temp",
+        "label": "F",
+        "format": "{{msg.value}}",
+        "min": "50",
+        "max": "90",
+        "colors": [
+            "#0c00b3",
+            "#e600c7",
+            "#cb3a3a"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 620,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "19d5bdd0dec4aad5",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "MainPump Button Setup",
+        "func": "\nmsg.topicSet = msg.payload.MainPump.status;\nmsg.topic=\"INITIALIZE\";\nmsg.colourON= \"red\";\nmsg.colourOFF= \"green\";\nmsg.textON= \"Pump OFF\";\nmsg.textOFF= \"Pump ON\";\nmsg.fontON= \"black\";\nmsg.fontOFF= \"black\";\nmsg.payloadON= \"{\\\"Set\\\":{\\\"MainPump\\\": \\\"on\\\"}}\";\nmsg.payloadOFF= \"{\\\"Set\\\":{\\\"MainPump\\\": \\\"off\\\"}}\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 200,
+        "y": 240,
+        "wires": [
+            [
+                "51bc75443d8de14b"
+            ]
+        ]
+    },
+    {
+        "id": "5e9aad0c22c11448",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "Booster Pump Button Setup",
+        "func": "msg.topicSet = msg.payload.Booster.status;\nmsg.topic=\"INITIALIZE\";\nmsg.colourON= \"red\";\nmsg.colourOFF= \"green\";\nmsg.textON= \"Boost OFF\";\nmsg.textOFF= \"Boost ON\";\nmsg.fontON= \"black\";\nmsg.fontOFF= \"black\";\nmsg.payloadON= \"{\\\"Set\\\":{\\\"Booster\\\": \\\"on\\\"}}\";\nmsg.payloadOFF= \"{\\\"Set\\\":{\\\"Booster\\\": \\\"off\\\"}}\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 210,
+        "y": 280,
+        "wires": [
+            [
+                "8ac1b569e57d70ef"
+            ]
+        ]
+    },
+    {
+        "id": "bbbc047dde6429a1",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "SWG Button Setup",
+        "func": "\nmsg.topicSet = msg.payload.IC40.status;\nmsg.topic=\"INITIALIZE\";\nmsg.colourON= \"red\";\nmsg.colourOFF= \"green\";\nmsg.textON= \"SWG OFF\";\nmsg.textOFF= \"SWG ON\";\nmsg.fontON= \"black\";\nmsg.fontOFF= \"black\";\nmsg.payloadON= \"{\\\"Set\\\":{\\\"IC40\\\": \\\"on\\\"}}\";\nmsg.payloadOFF= \"{\\\"Set\\\":{\\\"IC40\\\": \\\"off\\\"}}\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 180,
+        "y": 320,
+        "wires": [
+            [
+                "f7746b4e1aff2f26"
+            ]
+        ]
+    },
+    {
+        "id": "e2e9a3e348dc489d",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "Lighting Setup",
+        "func": "\nmsg.topicSet = msg.payload.Lighting.status;\nmsg.topic=\"INITIALIZE\";\nmsg.colourON= \"red\";\nmsg.colourOFF= \"green\";\nmsg.textON= \"Lighting OFF\";\nmsg.textOFF= \"Lighting ON\";\nmsg.fontON= \"black\";\nmsg.fontOFF= \"black\";\nmsg.payloadON= \"{\\\"Set\\\":{\\\"Lighting\\\": \\\"on\\\"}}\";\nmsg.payloadOFF= \"{\\\"Set\\\":{\\\"Lighting\\\": \\\"off\\\"}}\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 170,
+        "y": 360,
+        "wires": [
+            [
+                "a307dedab596fc4d"
+            ]
+        ]
+    },
+    {
+        "id": "51bc75443d8de14b",
+        "type": "subflow:0586947e121e6654",
+        "z": "31dc8608ec9fb87f",
+        "name": "",
+        "env": [],
+        "x": 410,
+        "y": 240,
+        "wires": [
+            [
+                "cc9c1b9087a298dc"
+            ]
+        ]
+    },
+    {
+        "id": "8ac1b569e57d70ef",
+        "type": "subflow:0586947e121e6654",
+        "z": "31dc8608ec9fb87f",
+        "name": "",
+        "x": 410,
+        "y": 280,
+        "wires": [
+            [
+                "cc9c1b9087a298dc"
+            ]
+        ]
+    },
+    {
+        "id": "f7746b4e1aff2f26",
+        "type": "subflow:0586947e121e6654",
+        "z": "31dc8608ec9fb87f",
+        "name": "",
+        "env": [],
+        "x": 410,
+        "y": 320,
+        "wires": [
+            [
+                "cc9c1b9087a298dc"
+            ]
+        ]
+    },
+    {
+        "id": "a307dedab596fc4d",
+        "type": "subflow:0586947e121e6654",
+        "z": "31dc8608ec9fb87f",
+        "name": "",
+        "x": 410,
+        "y": 360,
+        "wires": [
+            [
+                "cc9c1b9087a298dc"
+            ]
+        ]
+    },
+    {
+        "id": "5ae7c9a64d8e2840",
+        "type": "http request",
+        "z": "31dc8608ec9fb87f",
+        "name": "Send Control request",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 890,
+        "y": 240,
+        "wires": [
+            [
+                "991e98abdcc839c5"
+            ]
+        ]
+    },
+    {
+        "id": "99f29bf502c96b03",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "C to  F",
+        "func": "msg.value = parseFloat(msg.payload.DS18B20.HeatPumpInTemp);\nmsg.value = msg.value*1.8+32;\nmsg.value = msg.value.toFixed(1);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 180,
+        "wires": [
+            [
+                "454585cc3302e1b7"
+            ]
+        ]
+    },
+    {
+        "id": "9563705abfe52b6f",
+        "type": "ui_gauge",
+        "z": "31dc8608ec9fb87f",
+        "d": true,
+        "name": "Temp of Sensor Case",
+        "group": "a9460d7106236a34",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "InPool Sensor Temp",
+        "label": "units",
+        "format": "{{msg.value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 470,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "d3e646160cbc8e98",
+        "type": "ui_gauge",
+        "z": "31dc8608ec9fb87f",
+        "d": true,
+        "name": "Humidity in Sensor Case",
+        "group": "a9460d7106236a34",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Sensor Humidity",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 480,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "4b3c163eae9a1b43",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "d": true,
+        "name": "WirelessCase Temp",
+        "func": "msg.value = parseFloat(msg.payload.Wireless.CaseTemp);\nmsg.value = msg.value*1.8+32;\nmsg.value = msg.value.toFixed(1);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 170,
+        "y": 500,
+        "wires": [
+            [
+                "9563705abfe52b6f"
+            ]
+        ]
+    },
+    {
+        "id": "9ab70d8abd34d602",
+        "type": "comment",
+        "z": "31dc8608ec9fb87f",
+        "name": "Equipment Status",
+        "info": "Display equipment status and schedule details.\n",
+        "x": 150,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "72b0327c77c6309b",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "d": true,
+        "name": "Parse Humidity",
+        "func": "msg.value = parseFloat(msg.payload.Wireless.CaseHum);\nmsg.value = msg.value.toFixed(2);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 540,
+        "wires": [
+            [
+                "d3e646160cbc8e98"
+            ]
+        ]
+    },
+    {
+        "id": "d5893ef87772815e",
+        "type": "ui_gauge",
+        "z": "31dc8608ec9fb87f",
+        "d": true,
+        "name": "Sensor Recived Signal Strength",
+        "group": "a9460d7106236a34",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Signal Strength",
+        "label": "dbm",
+        "format": "{{msg.value}}",
+        "min": "-100",
+        "max": "0",
+        "colors": [
+            "#b30003",
+            "#e6e600",
+            "#52cb3a"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 500,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "fadc3095e33a8137",
+        "type": "ui_text",
+        "z": "31dc8608ec9fb87f",
+        "d": true,
+        "group": "a9460d7106236a34",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Water Sensor Update Time",
+        "format": "{{msg.value}}",
+        "layout": "col-center",
+        "x": 490,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "cc9fe66b7a4cacc0",
+        "type": "ui_gauge",
+        "z": "31dc8608ec9fb87f",
+        "name": "Controller Case Temp",
+        "group": "a9460d7106236a34",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Controller Temp",
+        "label": "F",
+        "format": "{{msg.value}}",
+        "min": 0,
+        "max": "120",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 470,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "e7853a7447239f69",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "Controller Enclosure Temp",
+        "func": "msg.value = parseFloat(msg.payload.SI7021.ControllerTemp);\nmsg.value = msg.value*1.80+32;\nmsg.value = msg.value.toFixed(1);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 190,
+        "y": 660,
+        "wires": [
+            [
+                "cc9fe66b7a4cacc0"
+            ]
+        ]
+    },
+    {
+        "id": "5e599dfd1be63791",
+        "type": "ui_gauge",
+        "z": "31dc8608ec9fb87f",
+        "name": "Controller case humidity",
+        "group": "a9460d7106236a34",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Controller Humidity",
+        "label": "%",
+        "format": "{{msg.value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 480,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "a22b631164a5dbeb",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "Controller Enclosure Humidity",
+        "func": "msg.value = parseFloat(msg.payload.SI7021.ControllerHum)\nmsg.value = msg.value.toFixed(2);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 200,
+        "y": 700,
+        "wires": [
+            [
+                "5e599dfd1be63791"
+            ]
+        ]
+    },
+    {
+        "id": "c106c4f77d1887e2",
+        "type": "catch",
+        "z": "31dc8608ec9fb87f",
+        "name": "Catch Errors",
+        "scope": null,
+        "uncaught": false,
+        "x": 1040,
+        "y": 60,
+        "wires": [
+            [
+                "b86b52277aa14a02"
+            ]
+        ]
+    },
+    {
+        "id": "b86b52277aa14a02",
+        "type": "debug",
+        "z": "31dc8608ec9fb87f",
+        "name": "StatusResponse",
+        "active": true,
+        "tosidebar": false,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1070,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "ced8dce908f2e409",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "d": true,
+        "name": "Validate Signal Strength",
+        "func": "msg.value = msg.payload.Wireless.Signal;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 180,
+        "y": 580,
+        "wires": [
+            [
+                "d5893ef87772815e"
+            ]
+        ]
+    },
+    {
+        "id": "de57f6655bd0c11f",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "d": true,
+        "name": "Validate Time",
+        "func": "if ( msg.payload.DS18B20.Time === \"1969-12-31 18:00:00\")\n    msg.value = \"Sensor is not updating\";\nelse\n    msg.value = msg.payload.DS18B20.Time;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 620,
+        "wires": [
+            [
+                "fadc3095e33a8137"
+            ]
+        ]
+    },
+    {
+        "id": "e8d2ef99aa0179d9",
+        "type": "subflow:9caf06bcd50b03fb",
+        "z": "31dc8608ec9fb87f",
+        "name": "",
+        "x": 850,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "991e98abdcc839c5",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "Status URL",
+        "func": "var url=env.get(\"poolgwurl\");\nmsg.url = url + \"/status\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 100,
+        "wires": [
+            [
+                "262e51f7108f4a37"
+            ]
+        ]
+    },
+    {
+        "id": "a27226c57820ce67",
+        "type": "ui_ui_control",
+        "z": "31dc8608ec9fb87f",
+        "name": "Refresh on change",
+        "events": "all",
+        "x": 120,
+        "y": 60,
+        "wires": [
+            [
+                "21dbfa3af569f974"
+            ]
+        ]
+    },
+    {
+        "id": "cc9c1b9087a298dc",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "Set URL",
+        "func": "var url = env.get(\"poolgwurl\");\nmsg.url = url + \"/set\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 240,
+        "wires": [
+            [
+                "5ae7c9a64d8e2840"
+            ]
+        ]
+    },
+    {
+        "id": "21dbfa3af569f974",
+        "type": "switch",
+        "z": "31dc8608ec9fb87f",
+        "name": "Check Pool Tab",
+        "property": "name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Pool",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 360,
+        "y": 60,
+        "wires": [
+            [
+                "991e98abdcc839c5"
+            ]
+        ]
+    },
+    {
+        "id": "d72649ee8613002e",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "HeatPumpInTemp",
+        "func": "msg.value = parseFloat(msg.payload.DS18B20.HeatPumpInTemp);\nmsg.value = msg.value*1.80+32;\nmsg.value = msg.value.toFixed(1);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 160,
+        "y": 740,
+        "wires": [
+            [
+                "4b768a5a95b278c6"
+            ]
+        ]
+    },
+    {
+        "id": "d5f72f7f7bc373f7",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "HeatPumpOutTemp",
+        "func": "msg.value = parseFloat(msg.payload.DS18B20.HeatPumpOutTemp);\nmsg.value = msg.value*1.8+32;\nmsg.value = msg.value.toFixed(1);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 160,
+        "y": 780,
+        "wires": [
+            [
+                "428d485afee6b8e2"
+            ]
+        ]
+    },
+    {
+        "id": "360c4aa3323bf103",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "AirTemp",
+        "func": "msg.value = parseFloat(msg.payload.DS18B20.AirTemp);\nmsg.value = msg.value*1.8+32;\nmsg.value = msg.value.toFixed(1);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 130,
+        "y": 820,
+        "wires": [
+            [
+                "bd29b72d624788ca"
+            ]
+        ]
+    },
+    {
+        "id": "4b768a5a95b278c6",
+        "type": "ui_gauge",
+        "z": "31dc8608ec9fb87f",
+        "name": "HeatPumpInTemp",
+        "group": "a9460d7106236a34",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "HeatPumpIn",
+        "label": "F",
+        "format": "{{msg.value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 460,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "428d485afee6b8e2",
+        "type": "ui_gauge",
+        "z": "31dc8608ec9fb87f",
+        "name": "HeatPumpOutTemp",
+        "group": "a9460d7106236a34",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "HeatPumpOut",
+        "label": "F",
+        "format": "{{msg.value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 460,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "bd29b72d624788ca",
+        "type": "ui_gauge",
+        "z": "31dc8608ec9fb87f",
+        "name": "AirTemp",
+        "group": "a9460d7106236a34",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "AirTemp",
+        "label": "F",
+        "format": "{{msg.value}}",
+        "min": 0,
+        "max": "110",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 430,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "6b08b035bbf46420",
+        "type": "catch",
+        "z": "31dc8608ec9fb87f",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 760,
+        "y": 680,
+        "wires": [
+            [
+                "85b4635609145249"
+            ]
+        ]
+    },
+    {
+        "id": "85b4635609145249",
+        "type": "debug",
+        "z": "31dc8608ec9fb87f",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 970,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "fff0c487315a4129",
+        "type": "ui_text",
+        "z": "31dc8608ec9fb87f",
+        "group": "a88fdbaa22dad647",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Heat Pump",
+        "format": "<font face='arial'><font color={{msg.fcolor}}>{{msg.payload.HeatPump.heat}}",
+        "layout": "row-left",
+        "x": 630,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "6b1a63de0052d9a0",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "HPOnOff",
+        "func": "if ( msg.payload.HeatPump.heat == \"Running\") {\n    msg.fcolor = \"green\";\n} else if (msg.payload.HeatPump.heat == \"Standby\") {\n    msg.fcolor = \"yellow\";\n} else {\n    msg.fcolor = \"black\";\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 420,
+        "wires": [
+            [
+                "fff0c487315a4129",
+                "e2b4169dbfb5f661"
+            ]
+        ]
+    },
+    {
+        "id": "e2b4169dbfb5f661",
+        "type": "debug",
+        "z": "31dc8608ec9fb87f",
+        "name": "HeatPUmpONOFF",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "7d9d0c872579178a",
+        "type": "debug",
+        "z": "31dc8608ec9fb87f",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "bd40252689eac30e",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "BuildSetSched",
+        "func": "var url = env.get(\"poolgwurl\");\nmsg.url = url + \"/setSched\";\nvar startTime = msg.payload.mpStartTime;\nvar stopTime = msg.payload.mpStopTime;\nmsg.payload = {\n    MainPump: {Start: startTime, Stop: stopTime},\n    IC40: {Start: msg.payload.icStartTime, Stop: msg.payload.icStopTime},\n    Booster: {Start: msg.payload.boostStartTime, Stop: msg.payload.boostStopTime},\n    Lighting: {Start: msg.payload.lightStartTime, Stop: msg.payload.lightStopTime}\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 1240,
+        "wires": [
+            [
+                "7d9d0c872579178a",
+                "49c5684f96016194"
+            ]
+        ]
+    },
+    {
+        "id": "e019525c9119055b",
+        "type": "ui_form",
+        "z": "31dc8608ec9fb87f",
+        "name": "ScheduleInput",
+        "label": "ScheduleInput",
+        "group": "19efb48bf8db710e",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "MainPump Start",
+                "value": "mpStartTime",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "MainPump Stop",
+                "value": "mpStopTime",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "IC40 Start",
+                "value": "icStartTime",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "IC40 Stop",
+                "value": "icStopTime",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Booster Start",
+                "value": "boostStartTime",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Booster Stop",
+                "value": "boostStopTime",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Light Start",
+                "value": "lightStartTime",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Light Stop",
+                "value": "lightStopTime",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "mpStartTime": "",
+            "mpStopTime": "",
+            "icStartTime": "",
+            "icStopTime": "",
+            "boostStartTime": "",
+            "boostStopTime": "",
+            "lightStartTime": "",
+            "lightStopTime": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "",
+        "topicType": "str",
+        "splitLayout": false,
+        "x": 320,
+        "y": 1180,
+        "wires": [
+            [
+                "bd40252689eac30e"
+            ]
+        ]
+    },
+    {
+        "id": "49c5684f96016194",
+        "type": "http request",
+        "z": "31dc8608ec9fb87f",
+        "name": "Post Schedules",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 400,
+        "y": 1240,
+        "wires": [
+            [
+                "f26a96f0ccb533bc"
+            ]
+        ]
+    },
+    {
+        "id": "27311125f4dcaae6",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "SetValues",
+        "func": "\nmsg.payload =\n{\n mpStartTime:msg.payload.Schedule.MainPump.Start, mpStopTime:msg.payload.Schedule.MainPump.Stop,\n icStartTime:msg.payload.Schedule.IC40.Start, icStopTime:msg.payload.Schedule.IC40.Stop,\n boostStartTime:msg.payload.Schedule.Booster.Start, boostStopTime:msg.payload.Schedule.Booster.Stop,\n lightStartTime:msg.payload.Schedule.Lighting.Start, lightStopTime:msg.payload.Schedule.Lighting.Stop\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 120,
+        "y": 1180,
+        "wires": [
+            [
+                "e019525c9119055b"
+            ]
+        ]
+    },
+    {
+        "id": "f26a96f0ccb533bc",
+        "type": "debug",
+        "z": "31dc8608ec9fb87f",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "5b9699a8a34b9230",
+        "type": "http request",
+        "z": "31dc8608ec9fb87f",
+        "name": "HTTP /sched",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 300,
+        "y": 1040,
+        "wires": [
+            [
+                "27311125f4dcaae6",
+                "b348fbc717038e70"
+            ]
+        ]
+    },
+    {
+        "id": "d4c894212d8047e3",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "SchedURL",
+        "func": "var url = env.get(\"poolgwurl\");\nmsg.url = url + \"/sched\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 980,
+        "wires": [
+            [
+                "5b9699a8a34b9230"
+            ]
+        ]
+    },
+    {
+        "id": "f82239649d9d3d79",
+        "type": "switch",
+        "z": "31dc8608ec9fb87f",
+        "name": "Check Schedule Tab",
+        "property": "name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Schedule",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 310,
+        "y": 920,
+        "wires": [
+            [
+                "d4c894212d8047e3"
+            ]
+        ]
+    },
+    {
+        "id": "634ed4695ec2ca0d",
+        "type": "ui_ui_control",
+        "z": "31dc8608ec9fb87f",
+        "name": "",
+        "events": "change",
+        "x": 110,
+        "y": 920,
+        "wires": [
+            [
+                "f82239649d9d3d79"
+            ]
+        ]
+    },
+    {
+        "id": "279a512698536dc5",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "RunSchedule Button Setup",
+        "func": "\nmsg.topicSet = msg.payload.Schedule.RunSchedule;\nmsg.topic=\"INITIALIZE\";\nmsg.colourON= \"red\";\nmsg.colourOFF= \"green\";\nmsg.textON= \"Disable Schedule\";\nmsg.textOFF= \"Run Schedule\";\nmsg.fontON= \"black\";\nmsg.fontOFF= \"black\";\nmsg.payloadON= \"{\\\"RunSchedule\\\": \\\"true\\\"}\";\nmsg.payloadOFF= \"{\\\"RunSchedule\\\": \\\"false\\\"}\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 180,
+        "y": 1460,
+        "wires": [
+            [
+                "0db24ff53d686771",
+                "6ee8f964959962c5"
+            ]
+        ]
+    },
+    {
+        "id": "0b2d518431075f7e",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "Set URL",
+        "func": "var url = env.get(\"poolgwurl\");\nmsg.url = url + \"/runSchedule\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 220,
+        "y": 1760,
+        "wires": [
+            [
+                "0b97f41ecfe29e9c",
+                "bd1edf1ca243324f"
+            ]
+        ]
+    },
+    {
+        "id": "0b97f41ecfe29e9c",
+        "type": "http request",
+        "z": "31dc8608ec9fb87f",
+        "name": "Send RunSchedule request",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 480,
+        "y": 1760,
+        "wires": [
+            [
+                "bd1edf1ca243324f"
+            ]
+        ]
+    },
+    {
+        "id": "bd1edf1ca243324f",
+        "type": "debug",
+        "z": "31dc8608ec9fb87f",
+        "name": "ControlReq",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "b348fbc717038e70",
+        "type": "json",
+        "z": "31dc8608ec9fb87f",
+        "name": "Parse JSON status",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 530,
+        "y": 1040,
+        "wires": [
+            [
+                "279a512698536dc5",
+                "a729106ad8cb3cef"
+            ]
+        ]
+    },
+    {
+        "id": "0db24ff53d686771",
+        "type": "debug",
+        "z": "31dc8608ec9fb87f",
+        "name": "Run Schedule Button  Setup",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "6ee8f964959962c5",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "Initialize-switch button state",
+        "func": "\nvar state = context.get(\"state\")||false;\n\n//  Look for a !X message to get values -- no button push.\nif ( msg.topicSet == \"false\" || msg.topicSet == \"true\"){\n    context.set(\"colourOFF\", msg.colourOFF);\n    context.set(\"colourON\", msg.colourON);\n    context.set(\"textOFF\", msg.textOFF);\n    context.set(\"textON\", msg.textON);\n    context.set(\"fontOFF\", msg.fontOFF);\n    context.set(\"fortON\", msg.fontON);\n    context.set(\"payloadOFF\", msg.payloadOFF);\n    context.set(\"payloadON\", msg.payloadON);\n    state = msg.topicSet;\n}\n// If button pushed change state.\nif ( msg.payload == \"X\" )\n{\n    if (state == \"false\") {\n        state = \"true\";\n    } else { // topicSet should be \"STOP\"\n        state = \"false\"\n    }\n    context.set(\"state\", state);\n}\nif (state == \"false\")\n{\n    //  Condition false\n    msg.payload = context.get(\"payloadOFF\");\n    msg.colour = context.get(\"colourOFF\");\n    msg.txt = context.get(\"textOFF\");\n    msg.fontclr = context.get(\"fontOFF\");\n} else\n{\n    //  Condition true\n    msg.payload = context.get(\"payloadON\");\n    msg.colour = context.get(\"colourON\");\n    msg.txt = context.get(\"textON\");\n    msg.fontclr = context.get(\"fontON\");\n}\n \nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 200,
+        "y": 1560,
+        "wires": [
+            [
+                "972096597b80c6ed",
+                "a8d39f2e36de67b9",
+                "b7e48dc6d42f0fe4"
+            ]
+        ]
+    },
+    {
+        "id": "972096597b80c6ed",
+        "type": "ui_button",
+        "z": "31dc8608ec9fb87f",
+        "name": "ToggleButton",
+        "group": "19efb48bf8db710e",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "{{msg.txt}}",
+        "tooltip": "",
+        "color": "{{msg.fontclr}}",
+        "bgcolor": "{{msg.colour}}",
+        "icon": "",
+        "payload": "X",
+        "payloadType": "str",
+        "topic": "CONTROL",
+        "topicType": "str",
+        "x": 170,
+        "y": 1660,
+        "wires": [
+            [
+                "6ee8f964959962c5"
+            ]
+        ]
+    },
+    {
+        "id": "a8d39f2e36de67b9",
+        "type": "switch",
+        "z": "31dc8608ec9fb87f",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "CONTROL",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "CONTROL",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 370,
+        "y": 1660,
+        "wires": [
+            [
+                "0b2d518431075f7e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b7e48dc6d42f0fe4",
+        "type": "debug",
+        "z": "31dc8608ec9fb87f",
+        "name": "ToggleSetup",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "2e04fd443737267d",
+        "type": "comment",
+        "z": "31dc8608ec9fb87f",
+        "name": "Schedule Tab",
+        "info": "",
+        "x": 110,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "a6068ac75f283cc9",
+        "type": "comment",
+        "z": "31dc8608ec9fb87f",
+        "name": "Set Schedules for Equipment\\",
+        "info": "",
+        "x": 180,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "87370e1f0dbd8eec",
+        "type": "comment",
+        "z": "31dc8608ec9fb87f",
+        "name": "Toggle Run Schedule/Disable Schedule",
+        "info": "",
+        "x": 210,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "a729106ad8cb3cef",
+        "type": "change",
+        "z": "31dc8608ec9fb87f",
+        "name": "HeatPumpSensor",
+        "rules": [
+            {
+                "t": "set",
+                "p": "HeatPumpSensor",
+                "pt": "global",
+                "to": "payload.Schedule.HeatPump.Sensor.State",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 920,
+        "wires": [
+            [
+                "f1b638110168c929"
+            ]
+        ]
+    },
+    {
+        "id": "f1b638110168c929",
+        "type": "debug",
+        "z": "31dc8608ec9fb87f",
+        "name": "flow.HeatPumpSensor",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.Schedule.HeatPump.Sensor.State",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "338f782a80d2b373",
+        "type": "debug",
+        "z": "31dc8608ec9fb87f",
+        "name": "JSON status",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "a269c5c6d9d48a2a",
+        "type": "exec",
+        "z": "31dc8608ec9fb87f",
+        "command": "/home/pi/IC40Utils /dev/ttyUSB0 percent",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "5",
+        "winHide": false,
+        "oldrc": false,
+        "name": "SWG Read",
+        "x": 250,
+        "y": 1980,
+        "wires": [
+            [
+                "e6fe6d15d3d02b8a",
+                "5c42b06cf7711070"
+            ],
+            [
+                "323b6b87f46e9e6e"
+            ],
+            [
+                "e1894c55d24e778a"
+            ]
+        ]
+    },
+    {
+        "id": "382b95ece8e162a7",
+        "type": "ui_ui_control",
+        "z": "31dc8608ec9fb87f",
+        "name": "SWG",
+        "events": "change",
+        "x": 130,
+        "y": 1900,
+        "wires": [
+            [
+                "a269c5c6d9d48a2a"
+            ]
+        ]
+    },
+    {
+        "id": "e6fe6d15d3d02b8a",
+        "type": "json",
+        "z": "31dc8608ec9fb87f",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 450,
+        "y": 1920,
+        "wires": [
+            [
+                "b7c4318a9a4fef41",
+                "576296d58bcdb5d0",
+                "49c48413ab7cf902",
+                "2bebac382a18b18e"
+            ]
+        ]
+    },
+    {
+        "id": "e1894c55d24e778a",
+        "type": "debug",
+        "z": "31dc8608ec9fb87f",
+        "name": "IC40 rtn-code",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 2080,
+        "wires": []
+    },
+    {
+        "id": "323b6b87f46e9e6e",
+        "type": "debug",
+        "z": "31dc8608ec9fb87f",
+        "name": "IC40 stderr",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 2040,
+        "wires": []
+    },
+    {
+        "id": "5c42b06cf7711070",
+        "type": "debug",
+        "z": "31dc8608ec9fb87f",
+        "name": "IC40-stdout",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 2000,
+        "wires": []
+    },
+    {
+        "id": "b7c4318a9a4fef41",
+        "type": "ui_text",
+        "z": "31dc8608ec9fb87f",
+        "group": "048e5c0b20f680ff",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Percent",
+        "label": "Percent",
+        "format": "{{msg.payload.Sanitizer.percent}}",
+        "layout": "row-right",
+        "className": "",
+        "x": 240,
+        "y": 2160,
+        "wires": []
+    },
+    {
+        "id": "576296d58bcdb5d0",
+        "type": "ui_text",
+        "z": "31dc8608ec9fb87f",
+        "group": "048e5c0b20f680ff",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "IC40Temp",
+        "label": "Temp",
+        "format": "{{msg.payload.Sanitizer.Temperture}}",
+        "layout": "row-right",
+        "className": "",
+        "x": 250,
+        "y": 2200,
+        "wires": []
+    },
+    {
+        "id": "49c48413ab7cf902",
+        "type": "debug",
+        "z": "31dc8608ec9fb87f",
+        "name": "SWG js object",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 1880,
+        "wires": []
+    },
+    {
+        "id": "b35fa15c2a4742f0",
+        "type": "ui_slider",
+        "z": "31dc8608ec9fb87f",
+        "name": "SWG Set sanitizer percent",
+        "label": "Sanitizer percent",
+        "tooltip": "",
+        "group": "048e5c0b20f680ff",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "payload\\",
+        "topicType": "msg",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 460,
+        "y": 2260,
+        "wires": [
+            [
+                "bade59cbe9f69b7c"
+            ]
+        ]
+    },
+    {
+        "id": "2bebac382a18b18e",
+        "type": "function",
+        "z": "31dc8608ec9fb87f",
+        "name": "",
+        "func": "msg.payload = msg.payload.percent;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 2260,
+        "wires": [
+            [
+                "b35fa15c2a4742f0"
+            ]
+        ]
+    },
+    {
+        "id": "bade59cbe9f69b7c",
+        "type": "exec",
+        "z": "31dc8608ec9fb87f",
+        "command": "/home/pi/IC40Utils /dev/ttyUSB0 sanitizer",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "10",
+        "winHide": false,
+        "oldrc": false,
+        "name": "IC40Utils sanitizer level",
+        "x": 750,
+        "y": 2260,
+        "wires": [
+            [
+                "904c813b3a7e1e8b"
+            ],
+            [],
+            [
+                "8223aefaf0f72f76"
+            ]
+        ]
+    },
+    {
+        "id": "904c813b3a7e1e8b",
+        "type": "debug",
+        "z": "31dc8608ec9fb87f",
+        "name": "Set sanitizer",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 2240,
+        "wires": []
+    },
+    {
+        "id": "8223aefaf0f72f76",
+        "type": "debug",
+        "z": "31dc8608ec9fb87f",
+        "name": "Set saniziter rtn code",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1110,
+        "y": 2300,
+        "wires": []
+    }
+]
